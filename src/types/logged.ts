@@ -1,6 +1,6 @@
 import { User } from '../model/user';
 
-export type Logued = {
+export type Logged = {
   user: User;
   token: string;
 };

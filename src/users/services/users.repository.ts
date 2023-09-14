@@ -1,6 +1,6 @@
 import { LoginData, User, UserNoId } from '../../model/user';
 import { Repository } from '../../services/repository';
-import { Logued } from '../../types/logued';
+import { Logged } from '../../types/logged';
 
 export class ApiUsersRepository implements Repository<User> {
   urlBase: string;
@@ -51,7 +51,7 @@ export class ApiUsersRepository implements Repository<User> {
     return data;
   }
 
-  async login(item: LoginData): Promise<Logued> {
+  async login(item: LoginData): Promise<Logged> {
     const response = await fetch(this.urlBase + '/login', {
       method: 'PATCH',
       body: JSON.stringify(item),
