@@ -25,6 +25,6 @@ describe('Given loginThunk', () => {
       user: { userName: 'test', password: 'test' } as LoginData,
     };
     appStore.dispatch(loginThunk(mockData));
-    await expect(mockRepo.login).toHaveBeenCalled();
+    expect(mockRepo.login).toHaveBeenCalled();
   });
 });
