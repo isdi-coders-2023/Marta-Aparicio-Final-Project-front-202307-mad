@@ -1,0 +1,26 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { LoginData, User, UserNoId } from '../../model/user';
+import { Logged } from '../../types/logged';
+import { ApiUsersRepository } from '../services/users.repository';
+
+export const registerThunk = createAsyncThunk<
+  User,
+  {
+    repo: ApiUsersRepository;
+    user: UserNoId;
+  }
+>('users/register', async ({ repo, user }) => {
+  const newUser = await repo.create(user);
+  return newUser;
+});
+
+export const loginThunk = createAsyncThunk<
+  Logged,
+  {
+    repo: ApiUsersRepository;
+    user: LoginData;
+  }
+>('users/login', async ({ repo, user }) => {
+  const LoggedUser = await repo.login(user);
+  return LoggedUser;
+});
