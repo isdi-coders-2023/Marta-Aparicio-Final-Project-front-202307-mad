@@ -24,7 +24,7 @@ export function RegisterForm() {
     <>
       <form
         // className={styles.registerForm}
-        aria-label="login"
+        aria-label="register"
         onSubmit={handleSubmit}
       >
         <legend>REGÍSTRATE</legend>

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginData, UserNoId } from '../../model/user';
+import { AppDispatch, RootState } from '../../store/store';
 import { ApiUsersRepository } from '../services/users.repository';
-import { AppDispatch, RootState } from '../store/store';
 
 import { loginThunk, registerThunk } from '../redux/users.thunk';
 

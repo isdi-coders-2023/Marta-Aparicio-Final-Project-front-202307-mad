@@ -1,5 +1,5 @@
-import { LoginForm } from '../users/components/loginUser/login';
-import { RegisterForm } from '../users/components/registerUser/register';
+import { LoginForm } from '../users/components/loginUser/loginForm';
+import { RegisterForm } from '../users/components/registerUser/registerForm';
 
 export function App() {
   return (
