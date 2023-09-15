@@ -3,15 +3,6 @@ import { LoginData, User, UserNoId } from '../../model/user';
 import { Logged } from '../../types/logged';
 import { ApiUsersRepository } from '../services/users.repository';
 
-// Thunk -> función devuelve un actionCreator
-// Parámetros
-// - nombre acción
-// - function action creator
-
-// Tipado
-// - retorno de la función -> payload de la acción síncrona
-// - parámetros de la función
-
 export const registerThunk = createAsyncThunk<
   User,
   {

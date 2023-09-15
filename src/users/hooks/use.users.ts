@@ -11,13 +11,8 @@ export const urlBase = ' http://localhost:4300/users';
 export function useUsers() {
   const repo = useMemo(() => new ApiUsersRepository(urlBase), []);
 
-  //const [notes, setNotes] = useState<Note[]>([]);
-
   const usersState = useSelector((state: RootState) => state.users);
   const dispatch = useDispatch<AppDispatch>();
-  // Ejecuta el callback
-  // una vez al renderizar el componente por vez primera
-  // cada vez que cambie una variable del array de dependencias
 
   const register = async (user: UserNoId) => {
     dispatch(registerThunk({ repo, user }));
