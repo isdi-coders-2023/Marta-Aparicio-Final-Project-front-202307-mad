@@ -1,13 +1,12 @@
-import { Header } from '../users/components/header/header';
-import { LoginForm } from '../users/components/loginUser/loginForm';
-import { RegisterForm } from '../users/components/registerUser/registerForm';
+import ErrorPage from '../components/error-page/error-page';
 
 export function App() {
   return (
     <>
-      <Header></Header>
+      {/* <Header></Header>
       <RegisterForm></RegisterForm>
-      <LoginForm></LoginForm>
+      <LoginForm></LoginForm> */}
+      <ErrorPage></ErrorPage>
     </>
   );
 }

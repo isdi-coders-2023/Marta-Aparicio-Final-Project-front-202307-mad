@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 5rem;
+  background: #ffab2e;
+  gap: 2rem;
+  padding: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    img {
+      width: 2rem;
+    }
+    hgroup {
+      h1 {
+        color: #fff;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 400;
+      }
+      p {
+        color: #fff;
+        font-size: 1rem;
+      }
+    }
+  }
+}
