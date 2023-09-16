@@ -1,4 +1,4 @@
-import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import usersReducer from '../users/redux/users.slice';
 
 export const appStore = configureStore({
@@ -9,10 +9,3 @@ export const appStore = configureStore({
 
 export type AppDispatch = typeof appStore.dispatch;
 export type RootState = ReturnType<typeof appStore.getState>;
-
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;

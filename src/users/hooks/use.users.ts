@@ -21,6 +21,7 @@ export function useUsers() {
     dispatch(loginThunk({ repo, user }));
   };
   return {
+    userLogin: usersState.login,
     users: usersState.users,
     loadState: usersState.loadState,
     error: usersState.error,
