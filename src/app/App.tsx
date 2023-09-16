@@ -1,11 +1,8 @@
-import { Header } from '../users/components/header/header';
-import { RegisterForm } from '../users/components/registerUser/registerForm';
-
+import ErrorPage from '../components/error-page/error-page';
 export function App() {
   return (
     <>
-      <Header></Header>
-      <RegisterForm></RegisterForm>
+      <ErrorPage></ErrorPage>
     </>
   );
 }
