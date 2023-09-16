@@ -3,7 +3,7 @@ export default function ErrorPage() {
   return (
     <main className={styles.errorPage}>
       <span className={styles.text}>Error 404</span>
-      <span>Receta no encontrada</span>
+      <span>Page not Found</span>
       <a href="/home">INICIO</a>
     </main>
   );
