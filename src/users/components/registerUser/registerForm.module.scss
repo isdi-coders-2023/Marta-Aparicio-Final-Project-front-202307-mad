@@ -1,38 +1,41 @@
-.registerForm {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 3rem;
-  gap: 1rem;
-  legend {
-    text-align: center;
-    font-size: 2rem;
-    font-style: normal;
-    margin-top: 3rem;
-    color: #ffab2e;
-  }
-  input {
-    text-align: center;
-    font-family: 'Gluten', cursive;
-    font-size: 1rem;
-    color: white;
-    width: 16rem;
-    height: 2rem;
-    border-radius: 2rem;
-    border: 2px solid #f2c53d;
-    background: #ffab2e;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  }
-  button {
-    text-align: center;
-    font-family: 'Gluten', cursive;
-    font-size: 1rem;
-    color: #ffab2e;
-    width: 7rem;
-    height: 2rem;
-    border-radius: 2rem;
-    border: 2px solid #f2c53d;
-    background: white;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+.main {
+  height: 655px;
+  form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    gap: 1rem;
+    legend {
+      text-align: center;
+      font-size: 2rem;
+      font-style: normal;
+      margin-top: 3rem;
+      color: #ffab2e;
+    }
+    input {
+      text-align: center;
+      font-family: 'Gluten', cursive;
+      font-size: 1rem;
+      color: #ffab2e;
+      width: 16rem;
+      height: 2rem;
+      border-radius: 2rem;
+      border: 2px solid #f2c53d;
+      background: white;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+    button {
+      text-align: center;
+      font-family: 'Gluten', cursive;
+      font-size: 1rem;
+      color: white;
+      width: 7rem;
+      height: 2rem;
+      border-radius: 2rem;
+      border: 2px solid #f2c53d;
+      background: #ffab2e;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
   }
 }

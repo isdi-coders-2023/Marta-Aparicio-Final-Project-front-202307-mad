@@ -44,7 +44,7 @@ const usersSlice = createSlice({
       }
     );
     builder.addCase(loginThunk.rejected, (state) => {
-      const error = new Error('Error creating notes');
+      const error = new Error('Error creating users');
       state.loadState = 'error';
       state.error = error;
     });

@@ -1,6 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { UserNoId } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
+import { LoginForm } from '../loginUser/loginForm';
 import styles from '../registerUser/registerForm.module.scss';
 export function RegisterForm() {
   const { register } = useUsers();
@@ -19,12 +20,8 @@ export function RegisterForm() {
   };
 
   return (
-    <>
-      <form
-        className={styles.registerForm}
-        aria-label="register"
-        onSubmit={handleSubmit}
-      >
+    <main className={styles.main}>
+      <form aria-label="register" onSubmit={handleSubmit}>
         <legend>REGÍSTRATE</legend>
         <input type="text" name="userName" placeholder="Nombre" required />
         <input type="email" name="email" placeholder="Email" required />
@@ -34,8 +31,11 @@ export function RegisterForm() {
           placeholder="Contraseña"
           required
         />
-        <button type="submit">Enviar</button>
+        <button aria-label="register-button" type="submit">
+          Enviar
+        </button>
       </form>
-    </>
+      <LoginForm></LoginForm>
+    </main>
   );
 }
