@@ -31,7 +31,9 @@ export function RegisterForm() {
           placeholder="Contraseña"
           required
         />
-        <button type="submit">Enviar</button>
+        <button aria-label="register-button" type="submit">
+          Enviar
+        </button>
       </form>
       <LoginForm></LoginForm>
     </main>

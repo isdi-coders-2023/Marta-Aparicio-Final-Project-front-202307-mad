@@ -22,12 +22,12 @@ describe('Given the component Form', () => {
     } as User;
 
     test('Then, send button should be in the document', () => {
-      const element = screen.getByRole('button');
+      const element = screen.getByLabelText('register-button');
       expect(element.textContent).toBe('Enviar');
     });
 
     test('Then, function handlesubmit should have been called', async () => {
-      const formElement = screen.getByRole('form');
+      const formElement = screen.getByLabelText('register');
       const inputElements = screen.getAllByRole('textbox');
 
       await userEvent.type(inputElements[0], mockUser.userName);
