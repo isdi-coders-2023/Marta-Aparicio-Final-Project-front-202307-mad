@@ -4,7 +4,7 @@ import Home from './home';
 
 describe('Given the componente Home', () => {
   describe('When we render it', () => {
-    const title = 'The Lord of the Rings: The Card Game';
+    const title = '¡Bienvenid@ A YUMMY PIÑAMI!';
     render(<Home></Home>);
     test('the component should be in the document', () => {
       const element = screen.getByText(title);
