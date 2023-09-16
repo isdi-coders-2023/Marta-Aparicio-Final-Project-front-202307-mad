@@ -5,7 +5,6 @@ export function App() {
     <>
       <Header></Header>
       <HomePage></HomePage>
-      {/* <ErrorPage></ErrorPage> */}
     </>
   );
 }
