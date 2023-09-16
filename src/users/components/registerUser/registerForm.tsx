@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { UserNoId } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
-
+import styles from '../registerUser/registerForm.module.scss';
 export function RegisterForm() {
   const { register } = useUsers();
   const handleSubmit = (ev: SyntheticEvent) => {
@@ -21,7 +21,7 @@ export function RegisterForm() {
   return (
     <>
       <form
-        // className={styles.registerForm}
+        className={styles.registerForm}
         aria-label="register"
         onSubmit={handleSubmit}
       >

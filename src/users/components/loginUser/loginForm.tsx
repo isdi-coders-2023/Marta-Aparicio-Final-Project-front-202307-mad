@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { LoginData } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
-
+import styles from '../loginUser/loginForm.module.scss';
 export function LoginForm() {
   const { login } = useUsers();
   const handleSubmit = (ev: SyntheticEvent) => {
@@ -19,13 +19,18 @@ export function LoginForm() {
   return (
     <>
       <form
-        // className={styles.loginForm}
+        className={styles.loginForm}
         aria-label="login"
         onSubmit={handleSubmit}
       >
         <legend>SI YA ESTÁS REGISTRADO</legend>
-        <input type="text" name="userName" placeholder="Nombre" />
-        <input type="password" name="password" placeholder="Contraseña" />
+        <input type="text" name="userName" placeholder="Nombre" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          required
+        />
         <button type="submit">Login</button>
       </form>
     </>
