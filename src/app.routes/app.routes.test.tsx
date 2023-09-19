@@ -13,7 +13,7 @@ jest.mock(
   () => MockedRegister
 );
 const MockedError = jest.fn().mockReturnValue(<h1>ErrorPage</h1>);
-jest.mock('../error-page/error-page', () => MockedError);
+jest.mock('../components/error-page/error-page', () => MockedError);
 
 describe('Given the componente AppRoutes', () => {
   const optionsMock: MenuOption[] = [
