@@ -9,7 +9,7 @@ jest.mock('../components/home/home', () => MockedHome);
 
 const MockedRegister = jest.fn().mockReturnValue(<h1>Register</h1>);
 jest.mock(
-  '../../users/components/registerUser/registerForm',
+  '../users/components/registerUser/registerForm',
   () => MockedRegister
 );
 const MockedError = jest.fn().mockReturnValue(<h1>ErrorPage</h1>);
