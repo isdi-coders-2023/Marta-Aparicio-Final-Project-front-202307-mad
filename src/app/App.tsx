@@ -1,8 +1,11 @@
-import ErrorPage from '../components/error-page/error-page';
+import { Header } from '../components/header/header';
+import HomePage from '../components/home/home';
+
 export function App() {
   return (
     <>
-      <ErrorPage></ErrorPage>
+      <Header></Header>
+      <HomePage></HomePage>
     </>
   );
 }
