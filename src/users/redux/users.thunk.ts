@@ -10,7 +10,7 @@ export const registerThunk = createAsyncThunk<
     user: UserNoId;
   }
 >('users/register', async ({ repo, user }) => {
-  const newUser = await repo.create(user);
+  const newUser = await repo.register(user);
   return newUser;
 });
 

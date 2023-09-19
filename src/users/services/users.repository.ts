@@ -7,37 +7,7 @@ export class ApiUsersRepository implements Repository<User> {
   constructor(urlBase: string) {
     this.urlBase = urlBase;
   }
-
-  async getAll(token: string): Promise<User[]> {
-    const response = await fetch(this.urlBase, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
-      },
-    });
-    if (!response.ok)
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    const data = await response.json();
-    return data;
-  }
-
-  async getById(id: string, token: string): Promise<User> {
-    const url = this.urlBase + '/' + id;
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
-      },
-    });
-    if (!response.ok)
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    const data = await response.json();
-    return data;
-  }
-
-  async create(item: UserNoId): Promise<User> {
+  async register(item: UserNoId): Promise<User> {
     const response = await fetch(this.urlBase + '/register', {
       method: 'POST',
       body: JSON.stringify(item),
@@ -63,35 +33,5 @@ export class ApiUsersRepository implements Repository<User> {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
     const data = await response.json();
     return data;
-  }
-
-  async update(item: Partial<User>, token: string): Promise<User> {
-    const url = this.urlBase + '/' + 'profile';
-    const response = await fetch(url, {
-      method: 'PATCH',
-      body: JSON.stringify(item),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
-      },
-    });
-    if (!response.ok)
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
-    const data = await response.json();
-    return data;
-  }
-
-  async delete(token: string): Promise<void> {
-    const url = this.urlBase + '/profile';
-    const response = await fetch(url, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
-      },
-    });
-
-    if (!response.ok)
-      throw new Error(`Error ${response.status}: ${response.statusText}`);
   }
 }

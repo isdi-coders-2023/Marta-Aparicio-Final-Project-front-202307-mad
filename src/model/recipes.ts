@@ -1,6 +1,7 @@
+import { WithId } from '../types/id';
 import { User } from './user';
 
-export type Recipies = {
+export type RecipeNoId = {
   name: string;
   category: string;
   Ingredients: string;
@@ -8,3 +9,5 @@ export type Recipies = {
   autor: User;
   img: string;
 };
+
+export type Recipe = WithId & RecipeNoId;

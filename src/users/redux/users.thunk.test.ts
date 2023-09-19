@@ -7,11 +7,11 @@ import { loginThunk, registerThunk } from './users.thunk';
 describe('Given registerThunk', () => {
   test('it should be dispatched', () => {
     const mockRepo = {
-      create: jest.fn(),
+      register: jest.fn(),
     } as unknown as ApiUsersRepository;
     const mockData = { repo: mockRepo, user: {} as UserNoId };
     appStore.dispatch(registerThunk(mockData));
-    expect(mockRepo.create).toHaveBeenCalled();
+    expect(mockRepo.register).toHaveBeenCalled();
   });
 });
 describe('Given loginThunk', () => {

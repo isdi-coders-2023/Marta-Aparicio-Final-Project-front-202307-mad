@@ -28,10 +28,10 @@ export function Header() {
             {token ? (
               <>
                 <li>
-                  <Link to={'/recipeForm'}>Crea la tuya</Link>
+                  <Link to={'/añadir-receta'}>Crea la tuya</Link>
                 </li>
                 <li>
-                  <Link to={'/ownerRecipes'}>Tus recetas</Link>
+                  <Link to={'/tus-recetas'}>Tus recetas</Link>
                 </li>
                 <li onClick={logout} className={style.login}>
                   <a>Logout</a>
