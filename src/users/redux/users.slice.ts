@@ -6,16 +6,14 @@ import { loginThunk, registerThunk } from './users.thunk';
 
 export type UsersState = {
   users: User[];
-  login: boolean;
-  token: string;
+  token?: string;
   loadState: 'loading' | 'loaded' | 'idle' | 'error';
   error: Error | null;
 };
 
 const initialState: UsersState = {
   users: [],
-  login: false,
-  token: '',
+  token: localStorage.getItem('userToken') as string | undefined,
   loadState: 'idle',
   error: null,
 };
@@ -23,7 +21,11 @@ const initialState: UsersState = {
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state) => {
+      state.token = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       registerThunk.fulfilled,
@@ -39,7 +41,6 @@ const usersSlice = createSlice({
     builder.addCase(
       loginThunk.fulfilled,
       (state, { payload }: { payload: Logged }) => {
-        state.login = true;
         state.token = payload.token;
       }
     );
