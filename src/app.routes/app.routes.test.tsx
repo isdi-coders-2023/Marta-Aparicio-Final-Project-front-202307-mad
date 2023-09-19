@@ -5,7 +5,7 @@ import { MenuOption } from '../types/menu';
 import { AppRoutes } from './app.routes';
 
 const MockedHome = jest.fn().mockReturnValue(<h1>Home</h1>);
-jest.mock('../home/home', () => MockedHome);
+jest.mock('../components/home/home', () => MockedHome);
 
 const MockedRegister = jest.fn().mockReturnValue(<h1>Register</h1>);
 jest.mock(
