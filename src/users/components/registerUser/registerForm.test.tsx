@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { User } from '../../../model/user';
 import { appStore } from '../../../store/store';
-import { RegisterForm } from './registerForm';
+import RegisterForm from './registerForm';
 
 describe('Given the component Form', () => {
   beforeEach(() =>
