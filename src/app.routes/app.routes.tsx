@@ -1,11 +1,11 @@
-import { Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { MenuOption } from '../../types/menu';
-const HomePage = lazy(() => import('../home/home'));
+import { MenuOption } from '../types/menu';
+const HomePage = lazy(() => import('../components/home/home'));
 const RegisterForm = lazy(
-  () => import('../../users/components/registerUser/registerForm')
+  () => import('../../src/users/components/registerUser/registerForm')
 );
-const ErrorPage = lazy(() => import('../error-page/error-page'));
+const ErrorPage = lazy(() => import('../components/error-page/error-page'));
 
 type Props = {
   options: MenuOption[];
