@@ -3,7 +3,7 @@ import { UserNoId } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
 import { LoginForm } from '../loginUser/loginForm';
 import styles from '../registerUser/registerForm.module.scss';
-export function RegisterForm() {
+export default function RegisterForm() {
   const { register } = useUsers();
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
