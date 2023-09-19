@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
+import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { MenuOption } from '../../types/menu';
+import { MenuOption } from '../types/menu';
 import { AppRoutes } from './app.routes';
 
 const MockedHome = jest.fn().mockReturnValue(<h1>Home</h1>);
