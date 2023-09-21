@@ -2,31 +2,33 @@ import { Recipe, RecipeNoId } from '../../model/recipes';
 import { appStore } from '../../store/store';
 import { ApiRecipesRepository } from '../services/recipes.api.repository';
 import { addThunk, eraseThunk, loadThunk, updateThunk } from './recipes.thunk';
-describe('Given  load, add, uodate and delete thunks', () => {
-  describe('Given loadThunk', () => {
-    beforeEach(() => {
-      jest.spyOn(Array.prototype, 'push').mockReturnValue(5);
-      jest.spyOn(Array.prototype, 'map').mockReturnValue([]);
-    });
-    // const recipes = {
-    //   pending: 'loading',
-    //   fulfilled: 'loaded',
-    //   rejected: 'error',
-    // };
+describe('Given  class ', () => {
+  beforeEach(() => {
+    jest.spyOn(Array.prototype, 'push').mockReturnValue(5);
+    jest.spyOn(Array.prototype, 'map').mockReturnValue([]);
+  });
 
-    test.only('getAll should be dispatched', () => {
-      const mockRepo = {
-        getAll: jest.fn().mockResolvedValue([]),
-      } as unknown as ApiRecipesRepository;
+  const mockRepo = {
+    getAll: jest.fn(),
+    create: jest.fn().mockResolvedValue({} as Recipe),
+    update: jest.fn(),
+    delete: jest.fn(),
+  } as unknown as ApiRecipesRepository;
+  describe('Given loadThunk', () => {
+    test('getAll should be dispatched', () => {
+      // const mockRepo = {
+      //   getAll: jest.fn(),
+      // } as unknown as ApiRecipesRepository;
       const mockData = mockRepo;
       appStore.dispatch(loadThunk(mockData));
-      // expect(recipes.pending).toEqual('loading');
       expect(mockRepo.getAll).toHaveBeenCalled();
     });
+  });
+  describe('Given addThunk', () => {
     test('addThunk should be dispatched', () => {
-      const mockRepo = {
-        create: jest.fn().mockResolvedValue({} as Recipe),
-      } as unknown as ApiRecipesRepository;
+      // const mockRepo = {
+      //   create: jest.fn().mockResolvedValue({} as Recipe),
+      // } as unknown as ApiRecipesRepository;
       const mockData = {
         repo: mockRepo,
         recipe: { name: 'test' } as RecipeNoId,
@@ -34,10 +36,12 @@ describe('Given  load, add, uodate and delete thunks', () => {
       appStore.dispatch(addThunk(mockData));
       expect(mockRepo.create).toHaveBeenCalled();
     });
+  });
+  describe('Given updateThunk', () => {
     test('updateThunk should be dispatched', () => {
-      const mockRepo = {
-        update: jest.fn(),
-      } as unknown as ApiRecipesRepository;
+      // const mockRepo = {
+      //   update: jest.fn(),
+      // } as unknown as ApiRecipesRepository;
       const mockData = {
         repo: mockRepo,
         recipe: {} as Partial<Recipe>,
@@ -46,10 +50,12 @@ describe('Given  load, add, uodate and delete thunks', () => {
       appStore.dispatch(updateThunk(mockData));
       expect(mockRepo.update).toHaveBeenCalled();
     });
+  });
+  describe('Given deleteThunk', () => {
     test('deleteThunk should be dispatched', () => {
-      const mockRepo = {
-        delete: jest.fn(),
-      } as unknown as ApiRecipesRepository;
+      // const mockRepo = {
+      //   delete: jest.fn(),
+      // } as unknown as ApiRecipesRepository;
       const mockData = {
         repo: mockRepo,
         recipe: {} as Recipe,

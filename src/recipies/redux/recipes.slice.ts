@@ -19,20 +19,25 @@ const recipesSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loadThunk.pending, (state) => {
-      state.loadState = 'loading' || null;
-    });
+    builder.addCase(loadThunk.pending, (state) => ({
+      ...state,
+      loadState: 'loading',
+    }));
     builder.addCase(
       loadThunk.fulfilled,
-      (state, { payload }: { payload: Recipe[] }) => {
-        state.recipes = payload;
-        state.loadState = 'loaded';
-      }
+      (state, { payload }: { payload: Recipe[] }) => ({
+        ...state,
+        recipes: payload,
+        loadState: 'loaded',
+      })
     );
     builder.addCase(loadThunk.rejected, (state) => {
       const error = new Error('Error loading recipes');
-      state.loadState = 'error';
-      state.error = error;
+      return {
+        ...state,
+        loadState: 'error',
+        error: error,
+      };
     });
     builder.addCase(
       addThunk.fulfilled,
