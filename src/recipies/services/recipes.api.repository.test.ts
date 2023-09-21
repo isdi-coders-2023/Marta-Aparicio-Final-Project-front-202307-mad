@@ -12,7 +12,7 @@ describe('Given ApiTasksRepository class ', () => {
         ok: true,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      repo.getAll('1');
+      repo.getAll();
       expect(global.fetch).toHaveBeenCalled();
     });
     test('The method getById should be used', () => {
@@ -37,7 +37,7 @@ describe('Given ApiTasksRepository class ', () => {
         ok: true,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      repo.update({}, 'id', 'token');
+      repo.update({}, 'id');
       expect(global.fetch).toHaveBeenCalled();
     });
     test('The method delete should be used', () => {
@@ -45,7 +45,7 @@ describe('Given ApiTasksRepository class ', () => {
         ok: true,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      repo.delete('id', 'token');
+      repo.delete('id');
       expect(global.fetch).toHaveBeenCalled();
     });
   });
@@ -56,7 +56,7 @@ describe('Given ApiTasksRepository class ', () => {
         ok: false,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      expect(repo.getAll('1')).rejects.toThrow();
+      expect(repo.getAll()).rejects.toThrow();
     });
     test('The method getById should be used with an error', () => {
       global.fetch = jest.fn().mockResolvedValueOnce({
@@ -70,14 +70,21 @@ describe('Given ApiTasksRepository class ', () => {
         ok: false,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      expect(repo.update({}, 'id', 'token')).rejects.toThrow();
+      expect(repo.update({}, 'id')).rejects.toThrow();
+    });
+    test('The method create should be used with an error', () => {
+      global.fetch = jest.fn().mockResolvedValueOnce({
+        ok: false,
+        json: jest.fn().mockResolvedValue('Test'),
+      });
+      expect(repo.create({} as RecipeNoId)).rejects.toThrow();
     });
     test('The method delete should be used with an error', () => {
       global.fetch = jest.fn().mockResolvedValueOnce({
         ok: false,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      expect(repo.delete('id', 'token')).rejects.toThrow();
+      expect(repo.delete('id')).rejects.toThrow();
     });
   });
 });

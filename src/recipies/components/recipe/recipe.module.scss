@@ -1,0 +1,18 @@
+$secondary: #ffab2e;
+.li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+
+  a {
+    text-decoration: none;
+  }
+
+  h2 {
+    font-size: initial;
+    color: $secondary;
+    border-radius: $secondary;
+  }
+}

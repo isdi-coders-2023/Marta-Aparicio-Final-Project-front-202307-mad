@@ -20,10 +20,6 @@ export default function HomePage() {
           usuarios las disfruten y se inspiren!
         </p>
       </hgroup>
-      <img
-        src="../../../assets/contacta.svg"
-        alt="Imagen de cocina con email de contacto"
-      />
     </main>
   );
 }

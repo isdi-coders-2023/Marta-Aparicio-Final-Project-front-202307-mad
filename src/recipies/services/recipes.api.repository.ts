@@ -7,12 +7,11 @@ export class ApiRecipesRepository implements Repository<Recipe> {
     this.urlBase = urlBase;
   }
 
-  async getAll(token: string): Promise<Recipe[]> {
+  async getAll(): Promise<Recipe[]> {
     const response = await fetch(this.urlBase, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
       },
     });
     if (!response.ok)
@@ -36,8 +35,8 @@ export class ApiRecipesRepository implements Repository<Recipe> {
     return data;
   }
 
-  async create(item: RecipeNoId, token: string): Promise<Recipe> {
-    const response = await fetch(this.urlBase + '/añadir-receta', {
+  async create(item: RecipeNoId, token?: string): Promise<Recipe> {
+    const response = await fetch(this.urlBase + '/', {
       method: 'POST',
       body: JSON.stringify(item),
       headers: {
@@ -53,10 +52,10 @@ export class ApiRecipesRepository implements Repository<Recipe> {
 
   async update(
     item: Partial<Recipe>,
-    id: string,
-    token: string
+    token?: string,
+    id?: string
   ): Promise<Recipe> {
-    const url = this.urlBase + '/tus-recetas' + id;
+    const url = this.urlBase + '/' + id;
     const response = await fetch(url, {
       method: 'PATCH',
       body: JSON.stringify(item),
@@ -71,7 +70,7 @@ export class ApiRecipesRepository implements Repository<Recipe> {
     return data;
   }
 
-  async delete(token: string, id: string): Promise<void> {
+  async delete(id: string, token?: string): Promise<void> {
     const url = this.urlBase + '/' + id;
     const response = await fetch(url, {
       method: 'DELETE',
