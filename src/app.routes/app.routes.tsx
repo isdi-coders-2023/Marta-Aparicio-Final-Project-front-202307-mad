@@ -6,6 +6,9 @@ const RegisterForm = lazy(
   () => import('../../src/users/components/registerUser/registerForm')
 );
 const Recipes = lazy(() => import('../recipies/components/recipes/recipes'));
+const RecipesDetails = lazy(
+  () => import('../recipies/components/details-recipe/details.recipe')
+);
 const ErrorPage = lazy(() => import('../components/error-page/error-page'));
 
 export function AppRoutes() {
@@ -14,6 +17,10 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<HomePage></HomePage>}></Route>
         <Route path="/recetas" element={<Recipes></Recipes>}></Route>
+        <Route
+          path="/recetas/:id"
+          element={<RecipesDetails></RecipesDetails>}
+        ></Route>
         <Route path="/login" element={<RegisterForm></RegisterForm>}></Route>
         <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
       </Routes>

@@ -7,10 +7,6 @@ import Recipes from './recipes';
 
 describe('Given the component Recipes', () => {
   describe('When we render it', () => {
-    // (useRecipes as jest.Mock).mockReturnValue({
-    //   recipes: [],
-    //   loadRecipes: jest.fn(),
-    // });
     beforeEach(() => {
       render(
         <Provider store={appStore}>

@@ -5,8 +5,8 @@ import { User } from './user';
 export type RecipeNoId = {
   name: string;
   category: 'Legumbres' | 'Pasta' | 'Verdura' | 'Otros' | 'Pescado' | 'Carnes';
-  Ingredients: string;
-  Mode: string;
+  ingredients: string;
+  mode: string;
   autor: User;
   img: ImgData;
 };
