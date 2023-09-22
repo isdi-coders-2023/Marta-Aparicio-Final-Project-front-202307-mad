@@ -3,10 +3,16 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { appStore } from '../../../store/store';
+import { useRecipes } from '../../hooks/use.recipes';
 import Recipes from './recipes';
 
+jest.mock('../../hooks/use.recipes');
 describe('Given the component Recipes', () => {
   describe('When we render it', () => {
+    (useRecipes as jest.Mock).mockReturnValue({
+      recipes: [],
+      loadRecipes: jest.fn(),
+    });
     beforeEach(() => {
       render(
         <Provider store={appStore}>
