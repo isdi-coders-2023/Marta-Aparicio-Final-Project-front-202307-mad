@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { LoginData } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
-import styles from '../loginUser/loginForm.module.scss';
+import styles from '../registerUser/registerForm.module.scss';
 export function LoginForm() {
   const { login } = useUsers();
   const handleSubmit = (ev: SyntheticEvent) => {

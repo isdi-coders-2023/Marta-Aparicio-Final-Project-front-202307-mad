@@ -1,17 +1,21 @@
 .main {
-  height: 655px;
+  flex-grow: 1;
+
   form {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-bottom: 3rem;
     gap: 1rem;
+
     legend {
       text-align: center;
       font-size: 2rem;
       font-style: normal;
       margin-top: 3rem;
       color: #ffab2e;
+      text-shadow: 0 0 30px white;
+      // -webkit-text-stroke: 0.5px white;
     }
     input {
       text-align: center;
@@ -22,7 +26,7 @@
       height: 2rem;
       border-radius: 2rem;
       border: 2px solid #f2c53d;
-      background: white;
+      background: rgba(255, 255, 255, 0.8);
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
     button {

@@ -1,10 +1,15 @@
-$secondary: #ffab2e;
+$secondary: black;
 .li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  margin: 0;
+  padding: 2rem;
+  width: 15rem;
   text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 100px black;
+  border-radius: 25px;
 
   a {
     text-decoration: none;
@@ -12,6 +17,7 @@ $secondary: #ffab2e;
 
   h2 {
     font-size: initial;
+    text-shadow: 0 0 5px white;
     color: $secondary;
     border-radius: $secondary;
   }

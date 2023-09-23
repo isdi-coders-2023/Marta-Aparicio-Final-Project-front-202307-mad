@@ -33,8 +33,9 @@ export function Header() {
                 <li>
                   <Link to={'/tus-recetas'}>Tus recetas</Link>
                 </li>
+
                 <li onClick={logout} className={style.login}>
-                  <a>Logout</a>
+                  <a href="/">Logout</a>
                   <FaUser />
                 </li>
               </>

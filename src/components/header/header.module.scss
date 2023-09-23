@@ -2,10 +2,13 @@ $primary: white;
 $secondary: #ffab2e;
 
 .nav-container {
+  position: sticky;
+  top: 0;
   display: flex;
   width: 100%;
   transition: all 0.5s ease;
   z-index: 1;
+  border-radius: 0 0 5% 5%;
   background-color: $secondary;
 
   main {
@@ -14,7 +17,6 @@ $secondary: #ffab2e;
     justify-content: space-between;
     align-items: center;
     padding: 1em 3em;
-    height: fit-content;
 
     img {
       max-height: 4rem;
@@ -93,7 +95,7 @@ $secondary: #ffab2e;
       justify-content: center;
       align-items: flex-end;
       position: absolute;
-      top: 5.2rem;
+      top: 5.25rem;
       padding: 0 3em;
       width: 100%;
       height: 85vh;

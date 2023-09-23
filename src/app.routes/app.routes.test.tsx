@@ -2,7 +2,6 @@ import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { AppRoutes } from './app.routes';
-
 describe('When it is instantiated with a route /', () => {
   const MockedHome = jest.fn().mockReturnValue(<h1>Home</h1>);
   jest.mock('../components/home/home', () => MockedHome);
@@ -119,6 +118,32 @@ describe('When it is instantiated with a route /', () => {
   });
   test('Then it should render Page', () => {
     expect(MockedRecipes).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+
+describe('When it is instantiated with a route /', () => {
+  const MockedHome = jest.fn().mockReturnValue(<h1>UserRecipes</h1>);
+  jest.mock(
+    '../recipies/components/users.recipes/users.recipes',
+    () => MockedHome
+  );
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/tus-recetas']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('UserRecipes');
+  });
+  test('Then it should render Home', () => {
+    expect(MockedHome).toHaveBeenCalled();
     expect(element).toBeInTheDocument();
   });
 });

@@ -10,7 +10,9 @@ const RecipesDetails = lazy(
   () => import('../recipies/components/details-recipe/details.recipe')
 );
 const ErrorPage = lazy(() => import('../components/error-page/error-page'));
-
+const UserRecipes = lazy(
+  () => import('../recipies/components/users.recipes/users.recipes')
+);
 export function AppRoutes() {
   return (
     <Suspense>
@@ -22,6 +24,10 @@ export function AppRoutes() {
           element={<RecipesDetails></RecipesDetails>}
         ></Route>
         <Route path="/login" element={<RegisterForm></RegisterForm>}></Route>
+        <Route
+          path="/tus-recetas"
+          element={<UserRecipes></UserRecipes>}
+        ></Route>
         <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </Suspense>

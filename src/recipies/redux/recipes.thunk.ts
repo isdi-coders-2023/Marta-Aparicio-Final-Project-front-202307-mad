@@ -21,11 +21,19 @@ export const addThunk = createAsyncThunk<
   return fullRecipe;
 });
 
+export const loadByIdThunk = createAsyncThunk<
+  Recipe,
+  { repo: ApiRecipesRepository; id: string; token: string }
+>('storms/loadById', async ({ repo, id, token }) => {
+  const storm = await repo.getById(id, token);
+  return storm;
+});
+
 export const updateThunk = createAsyncThunk<
   Recipe,
   {
     repo: ApiRecipesRepository;
-    recipe: Partial<Recipe>;
+    recipe: Partial<RecipeNoId>;
     id: string;
   }
 >('recipes/update', async ({ repo, recipe, id }) => {

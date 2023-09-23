@@ -7,7 +7,7 @@ export type RecipeNoId = {
   category: 'Legumbres' | 'Pasta' | 'Verdura' | 'Otros' | 'Pescado' | 'Carnes';
   ingredients: string;
   mode: string;
-  autor: User;
+  author: User;
   img: ImgData;
 };
 
