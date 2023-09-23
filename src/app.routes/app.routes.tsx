@@ -1,8 +1,5 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AddRecipe from '../recipies/components/create.recipe/create.recipe';
-
-AddRecipe;
 
 const HomePage = lazy(() => import('../components/home/home'));
 const RegisterForm = lazy(
