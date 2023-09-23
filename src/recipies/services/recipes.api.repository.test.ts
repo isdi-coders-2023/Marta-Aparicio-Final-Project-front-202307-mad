@@ -1,4 +1,3 @@
-import { RecipeNoId } from '../../model/recipes';
 import { ApiRecipesRepository } from './recipes.api.repository';
 
 describe('Given ApiTasksRepository class ', () => {
@@ -28,7 +27,7 @@ describe('Given ApiTasksRepository class ', () => {
         ok: true,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      repo.create({} as RecipeNoId, 'token');
+      repo.create({} as FormData, 'token');
       expect(global.fetch).toHaveBeenCalled();
     });
 
@@ -77,7 +76,7 @@ describe('Given ApiTasksRepository class ', () => {
         ok: false,
         json: jest.fn().mockResolvedValue('Test'),
       });
-      expect(repo.create({} as RecipeNoId)).rejects.toThrow();
+      expect(repo.create({} as FormData)).rejects.toThrow();
     });
     test('The method delete should be used with an error', () => {
       global.fetch = jest.fn().mockResolvedValueOnce({

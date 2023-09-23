@@ -7,11 +7,14 @@ const RegisterForm = lazy(
 );
 const Recipes = lazy(() => import('../recipies/components/recipes/recipes'));
 const RecipesDetails = lazy(
-  () => import('../recipies/components/details-recipe/details.recipe')
+  () => import('../recipies/components/details.recipe/details.recipe')
 );
-const ErrorPage = lazy(() => import('../components/error-page/error-page'));
+const ErrorPage = lazy(() => import('../components/error.page/error.page'));
 const UserRecipes = lazy(
   () => import('../recipies/components/users.recipes/users.recipes')
+);
+const CreateRecipes = lazy(
+  () => import('../recipies/components/create.recipe/create.recipe')
 );
 export function AppRoutes() {
   return (
@@ -28,6 +31,11 @@ export function AppRoutes() {
           path="/tus-recetas"
           element={<UserRecipes></UserRecipes>}
         ></Route>
+        <Route
+          path="/añadir-receta"
+          element={<CreateRecipes></CreateRecipes>}
+        ></Route>
+
         <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </Suspense>

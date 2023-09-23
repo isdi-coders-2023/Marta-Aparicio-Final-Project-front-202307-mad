@@ -1,4 +1,4 @@
-import { Recipe, RecipeNoId } from '../../model/recipes';
+import { Recipe } from '../../model/recipes';
 import { Repository } from '../../services/repository';
 
 export class ApiRecipesRepository implements Repository<Recipe> {
@@ -26,7 +26,7 @@ export class ApiRecipesRepository implements Repository<Recipe> {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       },
     });
     if (!response.ok)
@@ -35,13 +35,12 @@ export class ApiRecipesRepository implements Repository<Recipe> {
     return data;
   }
 
-  async create(item: RecipeNoId, token?: string): Promise<Recipe> {
+  async create(item: FormData, token?: string): Promise<Recipe> {
     const response = await fetch(this.urlBase + '/', {
       method: 'POST',
-      body: JSON.stringify(item),
+      body: item,
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       },
     });
     if (!response.ok)
@@ -61,7 +60,7 @@ export class ApiRecipesRepository implements Repository<Recipe> {
       body: JSON.stringify(item),
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       },
     });
     if (!response.ok)
@@ -76,7 +75,7 @@ export class ApiRecipesRepository implements Repository<Recipe> {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       },
     });
 

@@ -1,4 +1,4 @@
-import styles from '../error-page/error-page.module.scss';
+import styles from '../error.page/error.page.module.scss';
 export default function ErrorPage() {
   return (
     <main className={styles.errorPage}>
