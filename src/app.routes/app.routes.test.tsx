@@ -53,7 +53,7 @@ describe('When it is instantiated with a route /', () => {
 
 describe('When it is instantiated with a route /', () => {
   const MockedError = jest.fn().mockReturnValue(<h1>ErrorPage</h1>);
-  jest.mock('../components/error-page/error-page', () => MockedError);
+  jest.mock('../components/error.page/error.page', () => MockedError);
 
   let element: HTMLElement;
 
@@ -99,7 +99,7 @@ describe('When it is instantiated with a route /', () => {
 describe('When it is instantiated with a route /', () => {
   const MockedRecipes = jest.fn().mockReturnValue(<h1>DetailsRecipePage</h1>);
   jest.mock(
-    '../recipies/components/details-recipe/details.recipe',
+    '../recipies/components/details.recipe/details.recipe',
     () => MockedRecipes
   );
 

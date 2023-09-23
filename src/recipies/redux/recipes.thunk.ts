@@ -14,10 +14,11 @@ export const addThunk = createAsyncThunk<
   Recipe,
   {
     repo: ApiRecipesRepository;
-    recipe: RecipeNoId;
+    formData: FormData;
+    token: string;
   }
->('recipes/add', async ({ repo, recipe }) => {
-  const fullRecipe = await repo.create(recipe);
+>('recipes/add', async ({ repo, formData, token }) => {
+  const fullRecipe = await repo.create(formData, token);
   return fullRecipe;
 });
 

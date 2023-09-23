@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import ErrorPage from './error-page';
+import ErrorPage from './error.page';
 
 describe('Given the componet PageError', () => {
   describe('When we render it', () => {

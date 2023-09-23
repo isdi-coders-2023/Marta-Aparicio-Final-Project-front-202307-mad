@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../store/store';
 
-import { loadThunk } from '../redux/recipes.thunk';
+import { addThunk, loadThunk } from '../redux/recipes.thunk';
 import { ApiRecipesRepository } from '../services/recipes.api.repository';
 
 export const urlBase = ' http://localhost:4300/recipes';
@@ -19,10 +19,15 @@ export function useRecipes() {
     recipesDispatch(loadThunk(repo));
   }, [repo, recipesDispatch]);
 
+  const addRecipes = async (formData: FormData, token: string) => {
+    recipesDispatch(addThunk({ repo, formData, token }));
+  };
+
   return {
     recipes,
     loadState,
     error,
     loadRecipes,
+    addRecipes,
   };
 }
