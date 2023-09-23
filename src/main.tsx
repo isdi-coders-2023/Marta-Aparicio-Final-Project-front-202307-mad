@@ -6,7 +6,7 @@ import { App } from './app/App';
 import { appStore } from './store/store';
 import './styles.scss';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.querySelector('.root')!).render(
   <React.StrictMode>
     <Router>
       <Provider store={appStore}>

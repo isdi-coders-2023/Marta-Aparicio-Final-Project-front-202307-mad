@@ -3,5 +3,16 @@ html {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  height: 100%;
   font-family: 'Gluten', cursive;
+  overflow-x: hidden;
+  background-image: url('https://images.unsplash.com/photo-1483137140003-ae073b395549?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }

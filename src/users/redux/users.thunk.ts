@@ -10,7 +10,7 @@ export const registerThunk = createAsyncThunk<
     user: UserNoId;
   }
 >('users/register', async ({ repo, user }) => {
-  const newUser = await repo.create(user);
+  const newUser = await repo.register(user);
   return newUser;
 });
 
@@ -22,5 +22,7 @@ export const loginThunk = createAsyncThunk<
   }
 >('users/login', async ({ repo, user }) => {
   const LoggedUser = await repo.login(user);
+  localStorage.setItem('userToken', LoggedUser.token) as string | undefined;
+  localStorage.setItem('userId', LoggedUser.user.id) as string | undefined;
   return LoggedUser;
 });

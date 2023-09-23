@@ -1,21 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { User } from '../../model/user';
-
 import { Logged } from '../../types/logged';
 import { loginThunk, registerThunk } from './users.thunk';
 
 export type UsersState = {
+  currentUser: Logged;
   users: User[];
-  login: boolean;
-  token: string;
+  token?: string;
+  id?: string;
   loadState: 'loading' | 'loaded' | 'idle' | 'error';
   error: Error | null;
 };
 
 const initialState: UsersState = {
+  currentUser: { user: {}, token: '' } as Logged,
   users: [],
-  login: false,
-  token: '',
+  token: localStorage.getItem('userToken') as string | undefined,
+  id: localStorage.getItem('userId') as string | undefined,
   loadState: 'idle',
   error: null,
 };
@@ -23,7 +24,12 @@ const initialState: UsersState = {
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state) => {
+      state.token = undefined;
+      state.id = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       registerThunk.fulfilled,
@@ -39,8 +45,10 @@ const usersSlice = createSlice({
     builder.addCase(
       loginThunk.fulfilled,
       (state, { payload }: { payload: Logged }) => {
-        state.login = true;
         state.token = payload.token;
+        state.currentUser.token = payload.token;
+        state.currentUser.user = payload.user;
+        state.currentUser.user.id = payload.user.id;
       }
     );
     builder.addCase(loginThunk.rejected, (state) => {

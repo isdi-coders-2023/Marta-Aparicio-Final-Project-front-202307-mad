@@ -1,51 +1,149 @@
 import '@testing-library/jest-dom';
-import { render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { MenuOption } from '../types/menu';
 import { AppRoutes } from './app.routes';
+describe('When it is instantiated with a route /', () => {
+  const MockedHome = jest.fn().mockReturnValue(<h1>Home</h1>);
+  jest.mock('../components/home/home', () => MockedHome);
 
-const MockedHome = jest.fn().mockReturnValue(<h1>Home</h1>);
-jest.mock('../components/home/home', () => MockedHome);
+  let element: HTMLElement;
 
-const MockedRegister = jest.fn().mockReturnValue(<h1>Register</h1>);
-jest.mock(
-  '../users/components/registerUser/registerForm',
-  () => MockedRegister
-);
-const MockedError = jest.fn().mockReturnValue(<h1>ErrorPage</h1>);
-jest.mock('../components/error-page/error-page', () => MockedError);
-
-describe('Given the componente AppRoutes', () => {
-  const optionsMock: MenuOption[] = [
-    { path: '/home', label: 'Home' },
-    { path: '/register', label: 'Register' },
-  ];
-  const listPaths = (number: number) => {
-    render(
-      <Router
-        initialEntries={['/home', '/register', '/*']}
-        initialIndex={number}
-      >
-        <AppRoutes options={optionsMock}></AppRoutes>
-      </Router>
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
     );
-  };
-  describe('When we render it with the route "/home"', () => {
-    test('the component should render Home', async () => {
-      await waitFor(async () => listPaths(0));
-      const element = screen.getByText('Home');
-      expect(element).toBeInTheDocument();
-    });
-    test('The Cards should be shown by the component', async () => {
-      await waitFor(async () => listPaths(1));
-      const element = screen.getByText('Register');
-      expect(element).toBeInTheDocument();
-    });
 
-    test('The component should display the ErrorPage', async () => {
-      await waitFor(async () => listPaths(2));
-      const element = screen.getByText('ErrorPage');
-      expect(element).toBeInTheDocument();
-    });
+    element = screen.getByText('Home');
+  });
+  test('Then it should render Home', () => {
+    expect(MockedHome).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+
+describe('When it is instantiated with a route /', () => {
+  const MockedRegister = jest.fn().mockReturnValue(<h1>Register</h1>);
+  jest.mock(
+    '../users/components/registerUser/registerForm',
+    () => MockedRegister
+  );
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/login']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('Register');
+  });
+  test('Then it should render Register', () => {
+    expect(MockedRegister).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+
+describe('When it is instantiated with a route /', () => {
+  const MockedError = jest.fn().mockReturnValue(<h1>ErrorPage</h1>);
+  jest.mock('../components/error-page/error-page', () => MockedError);
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/*']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('ErrorPage');
+  });
+  test('Then it should render ErrorPage', () => {
+    expect(MockedError).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+describe('When it is instantiated with a route /', () => {
+  const MockedRecipes = jest.fn().mockReturnValue(<h1>RecipesPage</h1>);
+  jest.mock('../recipies/components/recipes/recipes', () => MockedRecipes);
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/recetas']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('RecipesPage');
+  });
+  test('Then it should render Page', () => {
+    expect(MockedRecipes).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+
+describe('When it is instantiated with a route /', () => {
+  const MockedRecipes = jest.fn().mockReturnValue(<h1>DetailsRecipePage</h1>);
+  jest.mock(
+    '../recipies/components/details-recipe/details.recipe',
+    () => MockedRecipes
+  );
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/recetas/:id']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('DetailsRecipePage');
+  });
+  test('Then it should render Page', () => {
+    expect(MockedRecipes).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+
+describe('When it is instantiated with a route /', () => {
+  const MockedHome = jest.fn().mockReturnValue(<h1>UserRecipes</h1>);
+  jest.mock(
+    '../recipies/components/users.recipes/users.recipes',
+    () => MockedHome
+  );
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/tus-recetas']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('UserRecipes');
+  });
+  test('Then it should render Home', () => {
+    expect(MockedHome).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
   });
 });

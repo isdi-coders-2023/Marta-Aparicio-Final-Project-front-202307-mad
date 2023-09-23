@@ -14,7 +14,7 @@ export default function RegisterForm() {
       email: (loginForm.elements.namedItem('email') as HTMLInputElement).value,
       password: (loginForm.elements.namedItem('password') as HTMLInputElement)
         .value,
-      recipies: [],
+      recipes: [],
     };
     register(newUser);
   };

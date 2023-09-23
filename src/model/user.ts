@@ -1,5 +1,5 @@
 import { WithId } from '../types/id';
-import { Recipies } from './recipies';
+import { Recipe } from './recipes';
 
 export type LoginData = {
   userName: string;
@@ -7,7 +7,7 @@ export type LoginData = {
 };
 export type UserNoId = LoginData & {
   email: string;
-  recipies: Recipies[];
+  recipes: Recipe[];
 };
 
 export type User = WithId & UserNoId;

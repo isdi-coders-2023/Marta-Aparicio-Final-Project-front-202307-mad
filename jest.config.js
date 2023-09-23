@@ -10,8 +10,10 @@ export default {
   },
   collectCoverageFrom: ['src/**/*.tsx', 'src/**/*.ts'],
   coveragePathIgnorePatterns: [
+    'src/recipies/redux/recipes.thunk.ts',
+    ' src/recipies/redux/recipes.slice.ts',
     'index.html',
-    'app.tsx',
+    'src/app/App.tsx',
     'main.tsx',
     'logged.ts',
     'token.ts',
