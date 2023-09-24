@@ -46,9 +46,10 @@ export const eraseThunk = createAsyncThunk<
   Recipe['id'],
   {
     repo: ApiRecipesRepository;
-    recipe: Recipe;
+    recipe: Recipe['id'];
+    token: string;
   }
->('recipes/erase', async ({ repo, recipe }) => {
-  await repo.delete(recipe.id);
-  return recipe.id;
+>('recipes/erase', async ({ repo, recipe, token }) => {
+  await repo.delete(recipe, token);
+  return recipe;
 });

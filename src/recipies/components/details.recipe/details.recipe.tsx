@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { Recipe } from '../../../model/recipes';
 import { useRecipes } from '../../hooks/use.recipes';
-import styles from '../details-recipe/details.module.scss';
+import styles from '../details.recipe/details.module.scss';
 export default function RecipeDetails() {
   const { recipes } = useRecipes();
 
