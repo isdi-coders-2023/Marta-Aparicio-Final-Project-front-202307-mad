@@ -35,11 +35,5 @@ describe('Given the componente UserRecipeCard', () => {
       const element = screen.getByAltText('Receta');
       expect(element).toBeInTheDocument();
     });
-    // test('the component should be in the document', async () => {
-    //   const button = screen.getByText('x');
-    //   await fireEvent.click(button);
-    //   expect(useUsers().token).toBe('');
-    //   expect(useRecipes().deleteRecipes).toHaveBeenCalled();
-    // });
   });
 });
