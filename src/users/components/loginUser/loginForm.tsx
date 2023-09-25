@@ -1,9 +1,12 @@
 import { SyntheticEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LoginData } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
 import styles from '../registerUser/registerForm.module.scss';
 export function LoginForm() {
   const { login } = useUsers();
+  const navigate = useNavigate();
+
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     const loginForm = ev.target as HTMLFormElement;
@@ -15,6 +18,7 @@ export function LoginForm() {
         .value,
     };
     login(data);
+    navigate('/añadir-receta');
   };
   return (
     <>

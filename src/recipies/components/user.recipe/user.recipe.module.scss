@@ -26,4 +26,9 @@ $secondary: black;
     height: 150px;
     object-fit: cover;
   }
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
 }

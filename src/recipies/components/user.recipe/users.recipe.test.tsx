@@ -7,7 +7,7 @@ import { Recipe } from '../../../model/recipes';
 import { appStore } from '../../../store/store';
 import { useUsers } from '../../../users/hooks/use.users';
 import { useRecipes } from '../../hooks/use.recipes';
-import { UserRecipeCard } from './users.recipe';
+import { UserRecipeCard } from './user.recipe';
 
 jest.mock('../../hooks/use.recipes');
 jest.mock('../../../users/hooks/use.users');

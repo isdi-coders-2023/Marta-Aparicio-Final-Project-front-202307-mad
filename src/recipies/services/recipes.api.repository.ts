@@ -20,7 +20,7 @@ export class ApiRecipesRepository implements Repository<Recipe> {
     return data;
   }
 
-  async getById(id: string, token: string): Promise<Recipe> {
+  async getById(id: string, token?: string): Promise<Recipe> {
     const url = this.urlBase + '/' + id;
     const response = await fetch(url, {
       method: 'GET',
@@ -51,8 +51,8 @@ export class ApiRecipesRepository implements Repository<Recipe> {
 
   async update(
     item: Partial<Recipe>,
-    token?: string,
-    id?: string
+    id: string,
+    token?: string
   ): Promise<Recipe> {
     const url = this.urlBase + '/' + id;
     const response = await fetch(url, {

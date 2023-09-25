@@ -35,7 +35,10 @@ export function AppRoutes() {
           path="/añadir-receta"
           element={<CreateRecipes></CreateRecipes>}
         ></Route>
-
+        <Route
+          path="/añadir-receta/:id"
+          element={<CreateRecipes></CreateRecipes>}
+        ></Route>
         <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
       </Routes>
     </Suspense>

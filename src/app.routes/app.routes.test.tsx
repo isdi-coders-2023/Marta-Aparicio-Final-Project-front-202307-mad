@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { AppRoutes } from './app.routes';
+
 describe('When it is instantiated with a route /', () => {
   const MockedHome = jest.fn().mockReturnValue(<h1>Home</h1>);
   jest.mock('../components/home/home', () => MockedHome);
@@ -90,17 +91,17 @@ describe('When it is instantiated with a route /', () => {
 
     element = screen.getByText('RecipesPage');
   });
-  test('Then it should render Page', () => {
+  test('Then it should render RecipesPage', () => {
     expect(MockedRecipes).toHaveBeenCalled();
     expect(element).toBeInTheDocument();
   });
 });
 
 describe('When it is instantiated with a route /', () => {
-  const MockedRecipes = jest.fn().mockReturnValue(<h1>DetailsRecipePage</h1>);
+  const MockedDetails = jest.fn().mockReturnValue(<h1>DetailsRecipePage</h1>);
   jest.mock(
     '../recipies/components/details.recipe/details.recipe',
-    () => MockedRecipes
+    () => MockedDetails
   );
 
   let element: HTMLElement;
@@ -116,17 +117,17 @@ describe('When it is instantiated with a route /', () => {
 
     element = screen.getByText('DetailsRecipePage');
   });
-  test('Then it should render Page', () => {
-    expect(MockedRecipes).toHaveBeenCalled();
+  test('Then it should render DetailsRecipePage', () => {
+    expect(MockedDetails).toHaveBeenCalled();
     expect(element).toBeInTheDocument();
   });
 });
 
 describe('When it is instantiated with a route /', () => {
-  const MockedHome = jest.fn().mockReturnValue(<h1>UserRecipes</h1>);
+  const MockedUserRecipes = jest.fn().mockReturnValue(<h1>UserRecipes</h1>);
   jest.mock(
     '../recipies/components/users.recipes/users.recipes',
-    () => MockedHome
+    () => MockedUserRecipes
   );
 
   let element: HTMLElement;
@@ -142,8 +143,59 @@ describe('When it is instantiated with a route /', () => {
 
     element = screen.getByText('UserRecipes');
   });
-  test('Then it should render Home', () => {
-    expect(MockedHome).toHaveBeenCalled();
+  test('Then it should render UserRecipes', () => {
+    expect(MockedUserRecipes).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+describe('When it is instantiated with a route /', () => {
+  const MockedCreate = jest.fn().mockReturnValue(<h1>CreateRecipes</h1>);
+  jest.mock(
+    '../recipies/components/create.recipe/create.recipe',
+    () => MockedCreate
+  );
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/añadir-receta']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('CreateRecipes');
+  });
+  test('Then it should render CreateRecipes', () => {
+    expect(MockedCreate).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+
+describe('When it is instantiated with a route /', () => {
+  const MockedUpdate = jest.fn().mockReturnValue(<h1>CreateRecipes</h1>);
+  jest.mock(
+    '../recipies/components/create.recipe/create.recipe',
+    () => MockedUpdate
+  );
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/añadir-receta/:id']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('CreateRecipes');
+  });
+  test('Then it should render CreateRecipes', () => {
+    expect(MockedUpdate).toHaveBeenCalled();
     expect(element).toBeInTheDocument();
   });
 });
