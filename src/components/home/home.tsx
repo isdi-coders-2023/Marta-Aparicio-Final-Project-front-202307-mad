@@ -9,10 +9,12 @@ export default function HomePage() {
           de nuestra comunidad:
         </p>
         <p>
-          1. Acceso a Todas las Recetas: Una vez registrado, tendrás acceso
-          completo a todas las recetas disponibles en nuestro sitio web. Desde
-          platos clásicos hasta las creaciones más innovadoras, podrás explorar
-          y cocinar una variedad de deliciosos platillos.
+          1. Únete a nuestra comunidad culinaria para acceder a todas nuestras
+          recetas. Desde platos clásicos hasta creaciones innovadoras, tendrás
+          una amplia variedad de opciones culinarias. Además, podrás compartir
+          tus propias recetas y formar parte de una comunidad apasionada por la
+          cocina. ¡Regístrate hoy y comienza a disfrutar de estas ventajas
+          culinarias!
         </p>
         <p>
           2. Comparte Tus Creaciones: ¿Tienes una receta secreta que deseas

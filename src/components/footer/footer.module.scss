@@ -1,0 +1,11 @@
+.footer {
+  height: 5%;
+  background-color: rgba(255, 255, 255, 0.655);
+  address {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    text-align: right;
+    color: #ffab2e;
+  }
+}

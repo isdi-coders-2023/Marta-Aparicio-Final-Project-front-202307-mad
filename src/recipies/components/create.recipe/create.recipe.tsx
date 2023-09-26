@@ -16,7 +16,7 @@ export default function AddRecipe() {
     const formData = new FormData(formElement);
     if (!id) {
       addRecipes(formData, token!);
-      navigate('/tus-recetas');
+      navigate('/recetas');
     } else {
       const recipe = recipes.find((recipe) => recipe.id === id) as Recipe;
 
