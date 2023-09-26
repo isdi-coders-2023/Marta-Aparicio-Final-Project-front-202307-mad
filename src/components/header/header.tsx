@@ -15,7 +15,7 @@ export function Header() {
       <nav className={style['nav-container']}>
         <main>
           <Link to={'/'}>
-            <img src="../../../assets/pinapple.webp" alt="YummyPiñami" />
+            <img src="../../../pinapple.webp" alt="YummyPiñami" />
           </Link>
 
           <ul style={isMenuOpen ? { right: '0%' } : { right: '-150%' }}>
