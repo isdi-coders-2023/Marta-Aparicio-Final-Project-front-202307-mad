@@ -36,9 +36,10 @@ export const updateThunk = createAsyncThunk<
     repo: ApiRecipesRepository;
     recipe: Partial<RecipeNoId>;
     id: string;
+    token: string;
   }
->('recipes/update', async ({ repo, recipe, id }) => {
-  const updatedRecipe = await repo.update(recipe, id);
+>('recipes/update', async ({ repo, recipe, id, token }) => {
+  const updatedRecipe = await repo.update(recipe, id, token);
   return updatedRecipe;
 });
 

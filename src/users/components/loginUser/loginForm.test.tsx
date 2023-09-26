@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import { User } from '../../../model/user';
 import { appStore } from '../../../store/store';
 import { LoginForm } from './loginForm';
@@ -10,7 +11,9 @@ describe('Given the component Form', () => {
   beforeEach(() =>
     render(
       <Provider store={appStore}>
-        <LoginForm></LoginForm>
+        <MemoryRouter>
+          <LoginForm></LoginForm>
+        </MemoryRouter>
       </Provider>
     )
   );

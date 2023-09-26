@@ -1,15 +1,12 @@
 import { useEffect } from 'react';
 import { Recipe } from '../../../model/recipes';
-import { useUsers } from '../../../users/hooks/use.users';
 import { useRecipes } from '../../hooks/use.recipes';
 import styles from '../recipes/recipes.module.scss';
-import { UserRecipeCard } from '../users.recipe/users.recipe';
+import { UserRecipeCard } from '../user.recipe/user.recipe';
 export default function UserRecipes() {
   const { recipes, loadRecipes } = useRecipes();
-  const { currentUser } = useUsers();
-
   const userRecipes = recipes.filter(
-    (recipe) => recipe.author.id === currentUser.user.id
+    (recipe) => recipe.author.id === localStorage.getItem('userId')
   ) as Recipe[];
 
   useEffect(() => {
@@ -18,6 +15,7 @@ export default function UserRecipes() {
 
   return (
     <main className={styles.main}>
+      <h3>TUS RECETAS</h3>
       <ul>
         {userRecipes.map((item: Recipe, index: number) => (
           <UserRecipeCard key={index} recipe={item}></UserRecipeCard>

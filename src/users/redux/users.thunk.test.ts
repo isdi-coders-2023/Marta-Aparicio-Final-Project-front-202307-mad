@@ -1,4 +1,4 @@
-import { LoginData, UserNoId } from '../../model/user';
+import { LoginData, User, UserNoId } from '../../model/user';
 import { appStore } from '../../store/store';
 import { Logged } from '../../types/logged';
 import { ApiUsersRepository } from '../services/users.repository';
@@ -16,7 +16,7 @@ describe('Given registerThunk', () => {
 });
 describe('Given loginThunk', () => {
   test('it should be dispatched', async () => {
-    const mockReturnedValue = {} as Logged;
+    const mockReturnedValue = { user: {} as User, token: '' } as Logged;
     const mockRepo = {
       login: jest.fn().mockReturnValueOnce(mockReturnedValue),
     } as unknown as ApiUsersRepository;
@@ -24,6 +24,7 @@ describe('Given loginThunk', () => {
       repo: mockRepo,
       user: { userName: 'test', password: 'test' } as LoginData,
     };
+
     appStore.dispatch(loginThunk(mockData));
     expect(mockRepo.login).toHaveBeenCalled();
   });

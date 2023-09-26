@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../store/store';
 
-import { Recipe } from '../../model/recipes';
-import { addThunk, eraseThunk, loadThunk } from '../redux/recipes.thunk';
+import { Recipe, RecipeNoId } from '../../model/recipes';
+import {
+  addThunk,
+  eraseThunk,
+  loadThunk,
+  updateThunk,
+} from '../redux/recipes.thunk';
 import { ApiRecipesRepository } from '../services/recipes.api.repository';
 
 export const urlBase = ' http://localhost:4300/recipes';
@@ -23,7 +28,13 @@ export function useRecipes() {
   const addRecipes = async (formData: FormData, token: string) => {
     recipesDispatch(addThunk({ repo, formData, token }));
   };
-
+  const updateRecipes = async (
+    recipe: Partial<RecipeNoId>,
+    id: string,
+    token: string
+  ) => {
+    recipesDispatch(updateThunk({ repo, recipe, id, token }));
+  };
   const deleteRecipes = async (recipe: Recipe['id'], token: string) => {
     recipesDispatch(eraseThunk({ repo, recipe, token }));
   };
@@ -34,5 +45,6 @@ export function useRecipes() {
     loadRecipes,
     addRecipes,
     deleteRecipes,
+    updateRecipes,
   };
 }

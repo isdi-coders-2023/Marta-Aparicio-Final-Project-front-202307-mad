@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter as Router } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import { Recipe } from '../../../model/recipes';
 import { appStore } from '../../../store/store';
 import { useUsers } from '../../../users/hooks/use.users';
 import { useRecipes } from '../../hooks/use.recipes';
-import { UserRecipeCard } from './users.recipe';
+import { UserRecipeCard } from './user.recipe';
 
 jest.mock('../../hooks/use.recipes');
 jest.mock('../../../users/hooks/use.users');
@@ -24,16 +24,24 @@ describe('Given the componente UserRecipeCard', () => {
   });
 
   describe('When we render it', () => {
-    render(
-      <Provider store={appStore}>
-        <Router>
-          <UserRecipeCard recipe={MockRecipe}></UserRecipeCard>
-        </Router>
-      </Provider>
-    );
+    beforeEach(() => {
+      render(
+        <Provider store={appStore}>
+          <Router>
+            <UserRecipeCard recipe={MockRecipe}></UserRecipeCard>
+          </Router>
+        </Provider>
+      );
+    });
+
     test('the component should be in the document', () => {
       const element = screen.getByAltText('Receta');
       expect(element).toBeInTheDocument();
+    });
+    test('the method deleteRecipes should be called', async () => {
+      const buttonElement = screen.getByRole('button');
+      await fireEvent.click(buttonElement);
+      expect(useRecipes().deleteRecipes).toHaveBeenCalled();
     });
   });
 });
