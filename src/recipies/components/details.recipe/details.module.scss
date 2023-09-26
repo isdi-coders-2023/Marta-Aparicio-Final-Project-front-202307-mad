@@ -9,7 +9,6 @@ $secondary: #ffab2e;
     align-content: center;
     align-items: center;
     padding: 2rem;
-    isolation: isolate; // que no me libro, que lo tengo que contar en la presentación
 
     img {
       transition: all 0.5s ease-in-out;
@@ -19,15 +18,4 @@ $secondary: #ffab2e;
       }
     }
   }
-}
-
-.main::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('../../../../assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg');
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-  filter: blur(5px) brightness(1);
 }
