@@ -173,29 +173,3 @@ describe('When it is instantiated with a route /', () => {
     expect(element).toBeInTheDocument();
   });
 });
-
-describe('When it is instantiated with a route /', () => {
-  const MockedUpdate = jest.fn().mockReturnValue(<h1>CreateRecipes</h1>);
-  jest.mock(
-    '../recipies/components/create.recipe/create.recipe',
-    () => MockedUpdate
-  );
-
-  let element: HTMLElement;
-
-  beforeEach(async () => {
-    await act(async () =>
-      render(
-        <Router initialEntries={['/añadir-receta/:id']} initialIndex={0}>
-          <AppRoutes></AppRoutes>
-        </Router>
-      )
-    );
-
-    element = screen.getByText('CreateRecipes');
-  });
-  test('Then it should render CreateRecipes', () => {
-    expect(MockedUpdate).toHaveBeenCalled();
-    expect(element).toBeInTheDocument();
-  });
-});

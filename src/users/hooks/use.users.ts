@@ -12,7 +12,7 @@ export const urlBase = ' http://localhost:4300/users';
 export function useUsers() {
   const repo = useMemo(() => new ApiUsersRepository(urlBase), []);
 
-  const { error, loadState, users, token, currentUser } = useSelector(
+  const { error, loadState, users, token } = useSelector(
     (state: RootState) => state.users
   );
   const dispatch = useDispatch<AppDispatch>();
@@ -21,7 +21,6 @@ export function useUsers() {
     dispatch(registerThunk({ repo, user }));
   };
   const login = async (user: LoginData) => {
-    console.log(user);
     dispatch(loginThunk({ repo, user }));
   };
   const logout = () => {
@@ -32,7 +31,6 @@ export function useUsers() {
 
   return {
     logout,
-    currentUser,
     error,
     loadState,
     users,

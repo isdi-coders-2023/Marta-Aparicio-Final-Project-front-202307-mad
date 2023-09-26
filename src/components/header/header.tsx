@@ -47,12 +47,12 @@ export function Header() {
             )}
           </ul>
           <section
+            role="button"
+            aria-label="button"
             className={style.menu}
             onClick={() => {
               setIsMenuOpen(!isMenuOpen);
             }}
-            role="button"
-            aria-label="button"
           >
             {isMenuOpen ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
           </section>

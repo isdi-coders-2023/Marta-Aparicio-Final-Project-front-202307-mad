@@ -2,19 +2,30 @@ $secondary: #ffab2e;
 
 .main {
   flex-grow: 1;
-  background-color: #fff;
+  // background-color: #fff;
   position: relative;
   isolation: isolate;
   padding: 3rem;
+
   h2 {
-    color: $secondary;
+    color: black;
+    text-shadow: 0 0 10px white;
   }
+
+  h3 {
+    color: $secondary;
+    font-size: 2rem;
+    text-shadow: 0 0 10px white;
+  }
+
   nav {
     display: flex;
     flex-direction: column;
     align-items: center;
     select {
       all: unset;
+      display: flex;
+      align-items: center;
       margin: 1rem;
       padding: 1rem 2rem;
       text-align: center;
@@ -31,25 +42,39 @@ $secondary: #ffab2e;
     align-items: center;
     margin-left: -2rem;
     gap: 1rem;
+
+    li {
+      transition: all 0.5s ease-in-out;
+    }
+  }
+
+  li:hover {
+    transform: scale(1.2);
+    background-color: #fff;
   }
 }
 
 @media (width > 900px) {
   .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     ul {
+      margin: 2rem 0;
       flex-direction: row;
-      // flex-wrap: wrap;
+      flex-wrap: wrap;
     }
   }
 }
 
-.main::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1483137140003-ae073b395549?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-  filter: blur(5px) brightness(1);
-}
+// .main::after {
+//   content: '';
+//   position: absolute;
+//   inset: 0;
+//   // background-image: url('../../../assets/brooke-lark-kXQ3J7_2fpc-unsplash.jpg');
+//   background-size: cover;
+//   background-position: center;
+//   z-index: -1;
+//   filter: blur(5px) brightness(1);
+// }

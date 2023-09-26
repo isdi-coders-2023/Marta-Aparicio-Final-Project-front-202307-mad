@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Recipe } from '../../../model/recipes';
 import { useUsers } from '../../../users/hooks/use.users';
 import { useRecipes } from '../../hooks/use.recipes';
-import styles from './users.recipe.module.scss';
+import styles from './user.recipe.module.scss';
 
 type Props = {
   recipe: Recipe;
@@ -24,7 +24,7 @@ export function UserRecipeCard({ recipe }: Props) {
         <span role="button" className="button" onClick={onClick}>
           x
         </span>
-        <Link to={`/añadir-receta/${recipe.id}`}>
+        <Link to={`/modificar-receta/${recipe.id}`}>
           <BiEditAlt />
         </Link>
       </div>

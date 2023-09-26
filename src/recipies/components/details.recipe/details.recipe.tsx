@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Recipe } from '../../../model/recipes';
 import { useRecipes } from '../../hooks/use.recipes';
 import styles from '../details.recipe/details.module.scss';
@@ -16,14 +16,14 @@ export default function RecipeDetails() {
         <img src={recipe.img.url} width="400px" alt="Receta" />
         <h3>Ingredientes</h3>
         <span>{recipe.ingredients}</span>
-      </div>
-      <div>
+
         <h3>Preparación</h3>
         <p>{recipe.mode}</p>
-      </div>
-      <Link role="button" className="goingBack" to={'/recetas'}>
+
+        {/* <Link role="button" className="goingBack" to={'/recetas'}>
         Atrás
-      </Link>
+      </Link> */}
+      </div>
     </main>
   );
 }

@@ -13,8 +13,8 @@ export default function AddRecipe() {
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     const formElement = ev.currentTarget as HTMLFormElement;
+    const formData = new FormData(formElement);
     if (!id) {
-      const formData = new FormData(formElement);
       addRecipes(formData, token!);
       navigate('/tus-recetas');
     } else {
@@ -77,10 +77,12 @@ export default function AddRecipe() {
               placeholder="Modo preparación"
               required
             />
+            <label htmlFor="img">Sube tu imagen</label>
             <input
               type="file"
-              placeholder="Update storm image"
+              placeholder="Sube la imagen"
               name="img"
+              id="img"
               accept="img/png, img/jpeg, img/jpg"
               required
             />
