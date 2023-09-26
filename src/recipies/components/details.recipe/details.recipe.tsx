@@ -19,10 +19,6 @@ export default function RecipeDetails() {
 
         <h3>Preparación</h3>
         <p>{recipe.mode}</p>
-
-        {/* <Link role="button" className="goingBack" to={'/recetas'}>
-        Atrás
-      </Link> */}
       </div>
     </main>
   );
