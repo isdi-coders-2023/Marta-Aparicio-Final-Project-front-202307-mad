@@ -1,3 +1,4 @@
+import { AiFillDelete } from 'react-icons/ai';
 import { BiEditAlt } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { Recipe } from '../../../model/recipes';
@@ -22,7 +23,7 @@ export function UserRecipeCard({ recipe }: Props) {
       </Link>
       <div>
         <span role="button" className="button" onClick={onClick}>
-          x
+          <AiFillDelete />
         </span>
         <Link to={`/modificar-receta/${recipe.id}`}>
           <BiEditAlt />
