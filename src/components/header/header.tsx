@@ -16,8 +16,8 @@ export function Header() {
         <main>
           <Link to={'/'}>
             <img
-              // width="30"
-              // height="80"
+              width="30"
+              height="80"
               src="../../../pinapple.webp"
               alt="YummyPiñami"
             />
