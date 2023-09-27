@@ -36,7 +36,7 @@ describe('Given the component Form', () => {
 
       expect(inputElement).toHaveValue(mockUser.userName);
 
-      await act(() => {
+      act(() => {
         fireEvent.submit(formElement);
       });
     });
