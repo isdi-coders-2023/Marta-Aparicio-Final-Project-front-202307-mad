@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Recipe } from '../../model/recipes';
 import { addThunk, eraseThunk, loadThunk, updateThunk } from './recipes.thunk';
 
@@ -17,7 +17,14 @@ const initialState: RecipesState = {
 const recipesSlice = createSlice({
   name: 'recipes',
   initialState,
-  reducers: {},
+  reducers: {
+    category: (state, action: PayloadAction<string>) => {
+      const category = action.payload;
+      state.recipes = state.recipes.filter(
+        (recipe) => recipe.category === category
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(loadThunk.pending, (state) => ({
       ...state,

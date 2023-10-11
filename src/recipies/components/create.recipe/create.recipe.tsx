@@ -13,8 +13,9 @@ export default function AddRecipe() {
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     const formElement = ev.currentTarget as HTMLFormElement;
-    const formData = new FormData(formElement);
+
     if (!id) {
+      const formData = new FormData(formElement);
       addRecipes(formData, token!);
       navigate('/recetas');
     } else {
@@ -30,7 +31,11 @@ export default function AddRecipe() {
         name:
           (formElement.elements.namedItem('name') as HTMLInputElement).value ||
           recipe.name,
+        category:
+          (formElement.elements.namedItem('category') as HTMLSelectElement)
+            .value || recipe.category,
       };
+
       updateRecipes(updatedRecipe, id, token!);
       navigate('/tus-recetas');
     }
@@ -45,7 +50,7 @@ export default function AddRecipe() {
           <legend>Crea tu receta</legend>
         )}
         <div>
-          <select defaultValue={''}>
+          <select defaultValue={''} name="category">
             <option value="" disabled>
               Selecciona el tipo de receta ▼
             </option>

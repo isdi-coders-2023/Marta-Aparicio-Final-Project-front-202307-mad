@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 
 import { Recipe, RecipeNoId } from '../../model/recipes';
+import { actions } from '../redux/recipes.slice';
 import {
   addThunk,
   eraseThunk,
@@ -38,6 +39,10 @@ export function useRecipes() {
   const deleteRecipes = async (recipe: Recipe['id'], token: string) => {
     recipesDispatch(eraseThunk({ repo, recipe, token }));
   };
+  const category = async (category: string) => {
+    await recipesDispatch(loadThunk(repo));
+    recipesDispatch(actions.category(category));
+  };
   return {
     recipes,
     loadState,
@@ -46,5 +51,6 @@ export function useRecipes() {
     addRecipes,
     deleteRecipes,
     updateRecipes,
+    category,
   };
 }

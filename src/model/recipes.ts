@@ -4,7 +4,7 @@ import { User } from './user';
 
 export type RecipeNoId = {
   name: string;
-  category: 'Legumbres' | 'Pasta' | 'Verdura' | 'Otros' | 'Pescado' | 'Carnes';
+  category: string;
   ingredients: string;
   mode: string;
   author: User;
