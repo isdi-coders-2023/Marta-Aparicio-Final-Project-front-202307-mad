@@ -13,6 +13,7 @@ export default function RecipeDetails() {
     <main className={styles.main}>
       <div>
         <h2>{recipe.name}</h2>
+        <span>{recipe.category}</span>
         <img src={recipe.img.url} width="400px" alt="Receta" />
         <h3>Ingredientes</h3>
         <span>{recipe.ingredients}</span>
