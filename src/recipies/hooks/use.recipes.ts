@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../store/store';
@@ -43,6 +43,28 @@ export function useRecipes() {
     await recipesDispatch(loadThunk(repo));
     recipesDispatch(actions.category(category));
   };
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const pageSize = 4;
+  const pageCount = Math.ceil(recipes.length / pageSize);
+  let paginatedData = recipes.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  const handleNextPage = () => {
+    if (currentPage < pageCount) {
+      setCurrentPage(currentPage + 1);
+      paginatedData = [];
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      paginatedData = [];
+    }
+  };
   return {
     recipes,
     loadState,
@@ -52,5 +74,11 @@ export function useRecipes() {
     deleteRecipes,
     updateRecipes,
     category,
+    currentPage,
+    pageSize,
+    pageCount,
+    paginatedData,
+    handleNextPage,
+    handlePreviousPage,
   };
 }

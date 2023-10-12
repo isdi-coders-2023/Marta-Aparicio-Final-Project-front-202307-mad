@@ -5,18 +5,9 @@ $secondary: #ffab2e;
   position: relative;
   isolation: isolate;
   padding: 3rem;
-
-  h2 {
-    color: black;
-    text-shadow: 0 0 10px white;
-  }
-
-  h3 {
-    color: $secondary;
-    font-size: 2rem;
-    text-shadow: 0 0 10px white;
-  }
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   nav {
     display: flex;
     flex-direction: column;
@@ -46,10 +37,28 @@ $secondary: #ffab2e;
       transition: all 0.5s ease-in-out;
     }
   }
-
   li:hover {
     transform: scale(1.2);
     background-color: #fff;
+  }
+  div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+
+    span {
+      color: white;
+      font-size: 2rem;
+      border-radius: 50%;
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      background-color: #ffab2e;
+    }
+  }
+  span {
+    color: black;
+    font-size: 1rem;
   }
 }
 

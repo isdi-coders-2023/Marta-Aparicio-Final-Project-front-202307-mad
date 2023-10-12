@@ -1,0 +1,62 @@
+$secondary: #ffab2e;
+
+.main {
+  flex-grow: 1;
+  position: relative;
+  isolation: isolate;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    color: $secondary;
+    font-size: 2rem;
+    text-shadow: 0 0 10px white;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -2rem;
+    gap: 1rem;
+
+    li {
+      transition: all 0.5s ease-in-out;
+    }
+  }
+  li:hover {
+    transform: scale(1.2);
+    background-color: #fff;
+  }
+}
+div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  .previousNextButtons {
+    color: white;
+    font-size: 2rem;
+    border-radius: 50%;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: #ffab2e;
+  }
+}
+
+@media (width > 900px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    ul {
+      margin: 2rem 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+}

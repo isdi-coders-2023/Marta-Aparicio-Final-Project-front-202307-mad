@@ -1,10 +1,20 @@
 import { SyntheticEvent, useEffect } from 'react';
+import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Recipe } from '../../../model/recipes';
 import { useRecipes } from '../../hooks/use.recipes';
 import { RecipeCard } from '../recipe/recipe';
 import styles from './recipes.module.scss';
 export default function Recipes() {
-  const { recipes, loadRecipes, category } = useRecipes();
+  const {
+    recipes,
+    loadRecipes,
+    category,
+    handleNextPage,
+    handlePreviousPage,
+    paginatedData,
+    currentPage,
+    pageCount,
+  } = useRecipes();
 
   useEffect(() => {
     loadRecipes();
@@ -31,10 +41,25 @@ export default function Recipes() {
         </select>
       </nav>
       <ul>
-        {recipes.map((item: Recipe) => (
+        {paginatedData.map((item: Recipe) => (
           <RecipeCard key={item.id} recipe={item}></RecipeCard>
         ))}
       </ul>
+      {recipes.length > 4 && (
+        <>
+          <div className="previousNextButtons">
+            <span role="button" onClick={handlePreviousPage}>
+              <GrFormPrevious />
+            </span>
+            <span role="button" onClick={handleNextPage}>
+              <GrFormNext />
+            </span>
+          </div>
+          <span>
+            {currentPage}/{pageCount}
+          </span>
+        </>
+      )}
     </main>
   );
 }
