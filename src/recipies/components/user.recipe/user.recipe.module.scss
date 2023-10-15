@@ -1,4 +1,5 @@
 $secondary: black;
+$first: #ffab2e;
 .li {
   display: flex;
   flex-direction: column;
@@ -30,5 +31,8 @@ $secondary: black;
     display: flex;
     flex-direction: row;
     gap: 2rem;
+    span {
+      color: $secondary;
+    }
   }
 }

@@ -10,12 +10,21 @@ jest.mock('../../hooks/use.recipes');
 jest.mock('../user.recipe/user.recipe');
 describe('Given the component Recipes', () => {
   describe('When we render it', () => {
-    (useRecipes as jest.Mock).mockReturnValue({
-      recipes: [{ author: { id: '1' }, img: { url: '' } }],
-      loadRecipes: jest.fn(),
-    });
-
-    beforeEach(() => {
+    jest.spyOn(Storage.prototype, 'getItem');
+    Storage.prototype.getItem = jest.fn().mockReturnValue('1');
+    beforeEach(async () => {
+      await (useRecipes as jest.Mock).mockReturnValue({
+        recipes: [
+          { id: '1', author: { id: '1' }, img: { url: '' } },
+          { id: '2', author: { id: '1' }, img: { url: '' } },
+          { id: '3', author: { id: '1' }, img: { url: '' } },
+          { id: '4', author: { id: '1' }, img: { url: '' } },
+          { id: '5', author: { id: '1' }, img: { url: '' } },
+        ],
+        loadRecipes: jest.fn(),
+        currentPage: 1,
+        pageSize: 4,
+      });
       render(
         <Provider store={appStore}>
           <Router>
@@ -24,6 +33,7 @@ describe('Given the component Recipes', () => {
         </Provider>
       );
     });
+
     test('Then a list should be in the document', () => {
       const element = screen.getByRole('list');
       expect(element).toBeInTheDocument();

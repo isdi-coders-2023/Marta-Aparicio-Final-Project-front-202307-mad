@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -36,8 +36,9 @@ describe('Given the component Form', () => {
       await userEvent.type(inputElements[0], mockUser.userName);
 
       expect(inputElements[0]).toHaveValue(mockUser.userName);
-
-      await fireEvent.submit(formElement);
+      act(() => {
+        fireEvent.submit(formElement);
+      });
     });
   });
 });

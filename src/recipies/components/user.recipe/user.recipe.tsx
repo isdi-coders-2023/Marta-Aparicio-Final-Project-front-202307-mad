@@ -13,6 +13,7 @@ type Props = {
 export function UserRecipeCard({ recipe }: Props) {
   const { deleteRecipes } = useRecipes();
   const { token } = useUsers();
+
   const onClick = () => deleteRecipes(recipe.id, token!);
 
   return (
@@ -26,7 +27,10 @@ export function UserRecipeCard({ recipe }: Props) {
           <AiFillDelete />
         </span>
         <Link to={`/modificar-receta/${recipe.id}`}>
-          <BiEditAlt />
+          <span>
+            {' '}
+            <BiEditAlt />
+          </span>
         </Link>
       </div>
     </li>

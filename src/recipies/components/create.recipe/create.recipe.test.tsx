@@ -18,25 +18,32 @@ jest.mock('react-router', () => ({
 }));
 
 describe('Given the component Form', () => {
-  const mockRecipe = {
-    id: '1',
-    ingredients: 'test',
-  } as Recipe;
+  beforeEach(() => {
+    const mockRecipe = {
+      id: '1',
+      ingredients: 'test',
+      name: 'testName',
+      category: 'Legumbres',
+    } as Recipe;
 
-  (useRecipes as jest.Mock).mockReturnValue({
-    recipes: [mockRecipe],
-    addRecipes: jest.fn(),
-    updateRecipes: jest.fn(),
-  });
+    (useRecipes as jest.Mock).mockReturnValue({
+      recipes: [mockRecipe],
+      addRecipes: jest.fn(),
+      updateRecipes: jest.fn(),
+    });
 
-  (useUsers as jest.Mock).mockReturnValue({
-    token: '',
+    (useUsers as jest.Mock).mockReturnValue({
+      token: '',
+    });
   });
 
   describe('When we render it', () => {
-    const mockPartialRecipe = {
-      ingredients: 'test2',
-    } as Partial<Recipe>;
+    let mockPartialRecipe = {} as Partial<Recipe>;
+    beforeEach(() => {
+      mockPartialRecipe = {
+        ingredients: 'test2',
+      } as Partial<Recipe>;
+    });
 
     const renderBefore = () => {
       render(
@@ -61,10 +68,20 @@ describe('Given the component Form', () => {
       const formElement = screen.getByLabelText('create-recipe');
       const inputElements = screen.getAllByRole('textbox');
       await userEvent.type(
-        inputElements[0],
+        inputElements[1],
         mockPartialRecipe.ingredients as string
       );
-      expect(inputElements[0]).toHaveValue(mockPartialRecipe.ingredients);
+      expect(inputElements[1]).toHaveValue(mockPartialRecipe.ingredients);
+      await fireEvent.submit(formElement);
+      expect(useRecipes().updateRecipes).toHaveBeenCalled();
+    });
+    test('Then, function handlesubmit should have been called', async () => {
+      (useParams as jest.Mock).mockReturnValue({ id: '1' });
+      renderBefore();
+      const formElement = screen.getByLabelText('create-recipe');
+      const inputElements = screen.getAllByRole('textbox');
+      await userEvent.type(inputElements[2], 'test');
+      expect(inputElements[2]).toHaveValue('test');
       await fireEvent.submit(formElement);
       expect(useRecipes().updateRecipes).toHaveBeenCalled();
     });

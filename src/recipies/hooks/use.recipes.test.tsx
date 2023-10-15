@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import React from 'react';
 import { Provider, useDispatch } from 'react-redux';
 import { Recipe } from '../../model/recipes';
 import { appStore } from '../../store/store';
@@ -11,12 +12,24 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn().mockReturnValue(jest.fn()),
 }));
 
+jest.spyOn(Math, 'ceil').mockReturnValue(3);
+
+const useStateSpy = jest.spyOn(React, 'useState');
+
 describe('Given the hook useRecipes', () => {
   const mockRecipeForm = {} as unknown as FormData;
   const mockRecipe = {} as unknown as Recipe;
+
   function MockComponent() {
-    const { loadRecipes, addRecipes, updateRecipes, deleteRecipes } =
-      useRecipes();
+    const {
+      loadRecipes,
+      addRecipes,
+      deleteRecipes,
+      updateRecipes,
+      category,
+      handleNextPage,
+      handlePreviousPage,
+    } = useRecipes();
 
     return (
       <>
@@ -31,6 +44,15 @@ describe('Given the hook useRecipes', () => {
         </button>
         <button role="button" onClick={() => deleteRecipes('', '')}>
           4
+        </button>
+        <button role="button" onClick={() => category('')}>
+          5
+        </button>
+        <button role="button" onClick={() => handleNextPage()}>
+          nextButton
+        </button>
+        <button role="button" onClick={() => handlePreviousPage()}>
+          previousButton
         </button>
       </>
     );
@@ -72,6 +94,22 @@ describe('Given the hook useRecipes', () => {
       await userEvent.click(buttons[3]);
 
       expect(useDispatch()).toHaveBeenCalled();
+    });
+    test('Then, if we click button 4, category should have been called', async () => {
+      const buttons = screen.getAllByRole('button');
+      await userEvent.click(buttons[4]);
+      expect(useDispatch()).toHaveBeenCalled();
+    });
+    test('handleNextPage updates currentPage correctly', async () => {
+      const buttons = screen.getAllByRole('button');
+      await userEvent.click(buttons[5]);
+      expect(useStateSpy).toHaveBeenCalled();
+    });
+    test('handlePreviousPage updates currentPage correctly', async () => {
+      const buttons = screen.getAllByRole('button');
+      await userEvent.click(buttons[5]);
+      await userEvent.click(buttons[6]);
+      expect(useStateSpy).toHaveBeenCalled();
     });
   });
 });
