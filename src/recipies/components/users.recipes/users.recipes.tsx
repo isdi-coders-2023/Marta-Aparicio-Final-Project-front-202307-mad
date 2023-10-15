@@ -31,8 +31,8 @@ export default function UserRecipes() {
     <main className={styles.main}>
       <h3>TUS RECETAS</h3>
       <ul>
-        {paginatedData.map((item: Recipe, index: number) => (
-          <UserRecipeCard key={index} recipe={item}></UserRecipeCard>
+        {paginatedData.map((item: Recipe) => (
+          <UserRecipeCard key={item.id} recipe={item}></UserRecipeCard>
         ))}
       </ul>
       {userRecipes.length > 4 && (

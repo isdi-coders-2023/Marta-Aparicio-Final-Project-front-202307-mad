@@ -28,7 +28,11 @@ export default function Recipes() {
   return (
     <main className={styles.main}>
       <nav>
-        <select defaultValue={''} onChange={handleCategories}>
+        <select
+          data-testid="select"
+          defaultValue={''}
+          onChange={handleCategories}
+        >
           <option value="" disabled>
             Selecciona un tipo de recetas ▼
           </option>

@@ -34,3 +34,23 @@ describe('Given the componente Header', () => {
     });
   });
 });
+describe('Given the componente Header without token', () => {
+  describe('When we render it', () => {
+    beforeEach(() => {
+      (useUsers as jest.Mock).mockReturnValue({
+        token: undefined,
+      });
+      render(
+        <Router>
+          <Provider store={appStore}>
+            <Header></Header>
+          </Provider>
+        </Router>
+      );
+    });
+    test('the component should be in the document', () => {
+      const element = screen.getByRole('navigation');
+      expect(element).toBeInTheDocument();
+    });
+  });
+});
