@@ -9,7 +9,9 @@ jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: jest.fn().mockReturnValue(jest.fn()),
 }));
-
+jest.mock('../../config.ts', () => ({
+  url: '',
+}));
 describe('Given the hook useUsers', () => {
   function TestComponent() {
     const { logout } = useUsers();

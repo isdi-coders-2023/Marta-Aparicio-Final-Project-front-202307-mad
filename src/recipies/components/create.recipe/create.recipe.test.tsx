@@ -16,6 +16,9 @@ jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
   useParams: jest.fn(),
 }));
+jest.mock('../../../config.ts', () => ({
+  url: '',
+}));
 
 describe('Given the component Form', () => {
   beforeEach(() => {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../store/store';
 
+import { url } from '../../config.ts';
 import { Recipe, RecipeNoId } from '../../model/recipes';
 import { actions } from '../redux/recipes.slice';
 import {
@@ -13,7 +14,7 @@ import {
 } from '../redux/recipes.thunk';
 import { ApiRecipesRepository } from '../services/recipes.api.repository';
 
-export const urlBase = ' http://localhost:4300/recipes';
+export const urlBase = url + '/recipes';
 export function useRecipes() {
   const repo = useMemo(() => new ApiRecipesRepository(urlBase), []);
 
@@ -46,27 +47,14 @@ export function useRecipes() {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  let userRecipes = recipes.filter(
-    (recipe) => recipe.author.id === localStorage.getItem('userId')
-  ) as Recipe[];
-
   const deleteRecipes = async (recipe: Recipe['id'], token: string) => {
     await recipesDispatch(eraseThunk({ repo, recipe, token }));
-
-    userRecipes = recipes.filter(
-      (recipe) => recipe.author.id === localStorage.getItem('userId')
-    ) as Recipe[];
-    console.log(recipes);
+    setCurrentPage(1);
   };
 
   const pageSize = 4;
 
   let paginatedData = recipes.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
-
-  let paginatedDataUser = userRecipes.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
@@ -81,7 +69,6 @@ export function useRecipes() {
   };
 
   const handlePreviousPage = () => {
-    console.log(currentPage);
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
       paginatedData = [];
@@ -97,12 +84,11 @@ export function useRecipes() {
     updateRecipes,
     category,
     currentPage,
+    setCurrentPage,
     pageSize,
     pageCount,
     paginatedData,
     handleNextPage,
     handlePreviousPage,
-    paginatedDataUser,
-    userRecipes,
   };
 }

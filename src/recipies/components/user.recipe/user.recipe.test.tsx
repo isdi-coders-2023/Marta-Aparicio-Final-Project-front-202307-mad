@@ -6,18 +6,16 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { Recipe } from '../../../model/recipes';
 import { appStore } from '../../../store/store';
 import { useUsers } from '../../../users/hooks/use.users';
-import { useRecipes } from '../../hooks/use.recipes';
 import { UserRecipeCard } from './user.recipe';
 
-jest.mock('../../hooks/use.recipes');
 jest.mock('../../../users/hooks/use.users');
+jest.mock('../../../config.ts', () => ({
+  url: '',
+}));
 
 describe('Given the componente UserRecipeCard', () => {
   const MockRecipe = { img: { url: 'test' } } as Recipe;
-
-  (useRecipes as jest.Mock).mockReturnValue({
-    deleteRecipes: jest.fn(),
-  });
+  const onDelete = jest.fn();
 
   (useUsers as jest.Mock).mockReturnValue({
     token: '',
@@ -28,7 +26,10 @@ describe('Given the componente UserRecipeCard', () => {
       render(
         <Provider store={appStore}>
           <Router>
-            <UserRecipeCard recipe={MockRecipe}></UserRecipeCard>
+            <UserRecipeCard
+              onDelete={onDelete}
+              recipe={MockRecipe}
+            ></UserRecipeCard>
           </Router>
         </Provider>
       );
@@ -38,10 +39,10 @@ describe('Given the componente UserRecipeCard', () => {
       const element = screen.getByAltText('Receta');
       expect(element).toBeInTheDocument();
     });
-    test('the method deleteRecipes should be called', async () => {
+    test('the method onDelete should be called', async () => {
       const buttonElement = screen.getByRole('button');
       await fireEvent.click(buttonElement);
-      expect(useRecipes().deleteRecipes).toHaveBeenCalled();
+      expect(onDelete).toHaveBeenCalled();
     });
   });
 });

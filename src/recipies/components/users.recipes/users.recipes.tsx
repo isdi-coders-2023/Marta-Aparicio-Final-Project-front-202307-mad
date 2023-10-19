@@ -7,25 +7,39 @@ import styles from '../users.recipes/users.recipes.module.scss';
 export default function UserRecipes() {
   const {
     loadRecipes,
-    handleNextPage,
     handlePreviousPage,
     currentPage,
-    pageCount,
-    paginatedDataUser,
-    userRecipes,
+    recipes,
+    handleNextPage,
+    pageSize,
+    deleteRecipes,
   } = useRecipes();
 
   useEffect(() => {
     loadRecipes();
-    console.log('entrando en el useEffect');
   }, [loadRecipes, currentPage]);
+
+  const userRecipes = recipes.filter(
+    (recipe) => recipe.author.id === localStorage.getItem('userId')
+  ) as Recipe[];
+
+  let paginatedDataUser = userRecipes.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  const pageCount = Math.ceil(userRecipes.length / pageSize);
 
   return (
     <main className={styles.main}>
       <h3>TUS RECETAS</h3>
       <ul>
         {paginatedDataUser.map((item: Recipe) => (
-          <UserRecipeCard key={item.id} recipe={item}></UserRecipeCard>
+          <UserRecipeCard
+            key={item.id}
+            recipe={item}
+            onDelete={deleteRecipes}
+          ></UserRecipeCard>
         ))}
       </ul>
       {userRecipes.length > 4 && (
