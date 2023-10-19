@@ -11,10 +11,15 @@ type Props = {
 };
 
 export function UserRecipeCard({ recipe }: Props) {
+  // const navigate = useNavigate();
   const { deleteRecipes } = useRecipes();
   const { token } = useUsers();
 
-  const onClick = () => deleteRecipes(recipe.id, token!);
+  const onClick = () => {
+    deleteRecipes(recipe.id, token!);
+
+    // navigate('/recetas');
+  };
 
   return (
     <li className={styles.li}>

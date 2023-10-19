@@ -13,6 +13,7 @@ const initialState: RecipesState = {
   loadState: 'idle',
   error: null,
 };
+// localStorage.setItem('initialState', JSON.stringify(initialState));
 
 const recipesSlice = createSlice({
   name: 'recipes',

@@ -20,6 +20,7 @@ export function useRecipes() {
   const { recipes, loadState, error } = useSelector(
     (state: RootState) => state.recipes
   );
+
   const recipesDispatch = useDispatch<AppDispatch>();
 
   const loadRecipes = useCallback(async () => {
@@ -29,6 +30,7 @@ export function useRecipes() {
   const addRecipes = async (formData: FormData, token: string) => {
     recipesDispatch(addThunk({ repo, formData, token }));
   };
+
   const updateRecipes = async (
     recipe: Partial<RecipeNoId>,
     id: string,
@@ -36,21 +38,40 @@ export function useRecipes() {
   ) => {
     recipesDispatch(updateThunk({ repo, recipe, id, token }));
   };
-  const deleteRecipes = async (recipe: Recipe['id'], token: string) => {
-    recipesDispatch(eraseThunk({ repo, recipe, token }));
-  };
+
   const category = async (category: string) => {
     await recipesDispatch(loadThunk(repo));
     recipesDispatch(actions.category(category));
   };
+
   const [currentPage, setCurrentPage] = useState(1);
 
+  let userRecipes = recipes.filter(
+    (recipe) => recipe.author.id === localStorage.getItem('userId')
+  ) as Recipe[];
+
+  const deleteRecipes = async (recipe: Recipe['id'], token: string) => {
+    await recipesDispatch(eraseThunk({ repo, recipe, token }));
+
+    userRecipes = recipes.filter(
+      (recipe) => recipe.author.id === localStorage.getItem('userId')
+    ) as Recipe[];
+    console.log(recipes);
+  };
+
   const pageSize = 4;
-  const pageCount = Math.ceil(recipes.length / pageSize);
+
   let paginatedData = recipes.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
   );
+
+  let paginatedDataUser = userRecipes.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
+  const pageCount = Math.ceil(recipes.length / pageSize);
 
   const handleNextPage = () => {
     if (currentPage < pageCount) {
@@ -60,6 +81,7 @@ export function useRecipes() {
   };
 
   const handlePreviousPage = () => {
+    console.log(currentPage);
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
       paginatedData = [];
@@ -80,5 +102,7 @@ export function useRecipes() {
     paginatedData,
     handleNextPage,
     handlePreviousPage,
+    paginatedDataUser,
+    userRecipes,
   };
 }

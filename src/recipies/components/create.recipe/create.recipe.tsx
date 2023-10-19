@@ -35,7 +35,6 @@ export default function AddRecipe() {
           (formElement.elements.namedItem('category') as HTMLSelectElement)
             .value || recipe.category,
       };
-
       updateRecipes(updatedRecipe, id, token!);
       navigate('/tus-recetas');
     }
