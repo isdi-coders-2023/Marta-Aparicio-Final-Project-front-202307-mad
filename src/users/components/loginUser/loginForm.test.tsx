@@ -5,16 +5,19 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { User } from '../../../model/user';
 import { appStore } from '../../../store/store';
-import { LoginForm } from './loginForm';
+import LoginForm from './loginForm';
 
+jest.mock('../../../../config.ts', () => ({
+  url: '',
+}));
 describe('Given the component Form', () => {
   beforeEach(() =>
     render(
-      <Provider store={appStore}>
-        <MemoryRouter>
+      <MemoryRouter>
+        <Provider store={appStore}>
           <LoginForm></LoginForm>
-        </MemoryRouter>
-      </Provider>
+        </Provider>
+      </MemoryRouter>
     )
   );
   describe('When we render it', () => {
@@ -35,8 +38,7 @@ describe('Given the component Form', () => {
       await userEvent.type(inputElement, mockUser.userName);
 
       expect(inputElement).toHaveValue(mockUser.userName);
-
-      act(() => {
+      await act(async () => {
         fireEvent.submit(formElement);
       });
     });

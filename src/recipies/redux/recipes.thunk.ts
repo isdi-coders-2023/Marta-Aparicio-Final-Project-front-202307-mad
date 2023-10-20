@@ -6,6 +6,7 @@ export const loadThunk = createAsyncThunk<Recipe[], ApiRecipesRepository>(
   'recipes/load',
   async (repo) => {
     const recipes = await repo.getAll();
+    // localStorage.setItem('recipes', JSON.stringify(recipes));
     return recipes;
   }
 );
@@ -19,6 +20,7 @@ export const addThunk = createAsyncThunk<
   }
 >('recipes/add', async ({ repo, formData, token }) => {
   const fullRecipe = await repo.create(formData, token);
+  // localStorage.setItem('recipes', JSON.stringify(fullRecipe));
   return fullRecipe;
 });
 

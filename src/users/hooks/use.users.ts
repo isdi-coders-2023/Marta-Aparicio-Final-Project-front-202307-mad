@@ -4,11 +4,11 @@ import { LoginData, UserNoId } from '../../model/user';
 import { AppDispatch, RootState } from '../../store/store';
 import { ApiUsersRepository } from '../services/users.repository';
 
+import { url } from '../../../config.ts';
 import { actions } from '../redux/users.slice';
 import { loginThunk, registerThunk } from '../redux/users.thunk';
 
-export const urlBase = ' http://localhost:4300/users';
-
+export const urlBase = url + '/users';
 export function useUsers() {
   const repo = useMemo(() => new ApiUsersRepository(urlBase), []);
 

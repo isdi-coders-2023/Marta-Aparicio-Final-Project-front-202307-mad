@@ -1,10 +1,11 @@
 import { SyntheticEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserNoId } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
-import { LoginForm } from '../loginUser/loginForm';
 import styles from '../registerUser/registerForm.module.scss';
 export default function RegisterForm() {
   const { register } = useUsers();
+  const navigate = useNavigate();
   const handleSubmit = (ev: SyntheticEvent) => {
     ev.preventDefault();
     const loginForm = ev.target as HTMLFormElement;
@@ -17,6 +18,7 @@ export default function RegisterForm() {
       recipes: [],
     };
     register(newUser);
+    navigate('/login');
   };
 
   return (
@@ -35,7 +37,9 @@ export default function RegisterForm() {
           Enviar
         </button>
       </form>
-      <LoginForm></LoginForm>
+      <Link to={'/login'}>
+        Si ya estás registrado, pulsa aquí para ir a login
+      </Link>
     </main>
   );
 }
