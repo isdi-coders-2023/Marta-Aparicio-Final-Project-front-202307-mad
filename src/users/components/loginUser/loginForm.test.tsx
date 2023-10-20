@@ -13,11 +13,11 @@ jest.mock('../../../config.ts', () => ({
 describe('Given the component Form', () => {
   beforeEach(() =>
     render(
-      <Provider store={appStore}>
-        <MemoryRouter>
+      <MemoryRouter>
+        <Provider store={appStore}>
           <LoginForm></LoginForm>
-        </MemoryRouter>
-      </Provider>
+        </Provider>
+      </MemoryRouter>
     )
   );
   describe('When we render it', () => {
@@ -38,8 +38,7 @@ describe('Given the component Form', () => {
       await userEvent.type(inputElement, mockUser.userName);
 
       expect(inputElement).toHaveValue(mockUser.userName);
-
-      act(() => {
+      await act(async () => {
         fireEvent.submit(formElement);
       });
     });

@@ -3,6 +3,9 @@ import { act, render, screen } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { AppRoutes } from './app.routes';
 
+jest.mock('../config.ts', () => ({
+  url: '',
+}));
 describe('When it is instantiated with a route /', () => {
   const MockedHome = jest.fn().mockReturnValue(<h1>Home</h1>);
   jest.mock('../components/home/home', () => MockedHome);
@@ -38,7 +41,7 @@ describe('When it is instantiated with a route /', () => {
   beforeEach(async () => {
     await act(async () =>
       render(
-        <Router initialEntries={['/login']} initialIndex={0}>
+        <Router initialEntries={['/registrate']} initialIndex={0}>
           <AppRoutes></AppRoutes>
         </Router>
       )
@@ -48,6 +51,28 @@ describe('When it is instantiated with a route /', () => {
   });
   test('Then it should render Register', () => {
     expect(MockedRegister).toHaveBeenCalled();
+    expect(element).toBeInTheDocument();
+  });
+});
+describe('When it is instantiated with a route /', () => {
+  const MockedLogin = jest.fn().mockReturnValue(<h1>Login</h1>);
+  jest.mock('../users/components/loginUser/loginForm', () => MockedLogin);
+
+  let element: HTMLElement;
+
+  beforeEach(async () => {
+    await act(async () =>
+      render(
+        <Router initialEntries={['/login']} initialIndex={0}>
+          <AppRoutes></AppRoutes>
+        </Router>
+      )
+    );
+
+    element = screen.getByText('Login');
+  });
+  test('Then it should render Login', () => {
+    expect(MockedLogin).toHaveBeenCalled();
     expect(element).toBeInTheDocument();
   });
 });
