@@ -2,8 +2,8 @@ import { SyntheticEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginData } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
-import styles from '../registerUser/registerForm.module.scss';
-export function LoginForm() {
+import styles from '../loginUser/loginForm.module.scss';
+export default function LoginForm() {
   const { login } = useUsers();
   const navigate = useNavigate();
 
@@ -21,12 +21,8 @@ export function LoginForm() {
     navigate('/añadir-receta');
   };
   return (
-    <>
-      <form
-        className={styles.loginForm}
-        aria-label="login"
-        onSubmit={handleSubmit}
-      >
+    <main className={styles.main}>
+      <form aria-label="login" onSubmit={handleSubmit}>
         <legend>SI YA ESTÁS REGISTRADO</legend>
         <input type="text" name="userName" placeholder="Nombre" required />
         <input
@@ -37,6 +33,6 @@ export function LoginForm() {
         />
         <button type="submit">Login</button>
       </form>
-    </>
+    </main>
   );
 }

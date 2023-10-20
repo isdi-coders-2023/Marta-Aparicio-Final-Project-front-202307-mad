@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { User } from '../../../model/user';
 import { appStore } from '../../../store/store';
-import { LoginForm } from './loginForm';
+import LoginForm from './loginForm';
 
 jest.mock('../../../config.ts', () => ({
   url: '',

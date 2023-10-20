@@ -16,6 +16,9 @@ const UserRecipes = lazy(
 const CreateRecipes = lazy(
   () => import('../recipies/components/create.recipe/create.recipe')
 );
+const LoginForm = lazy(
+  () => import('../../src/users/components/loginUser/loginForm')
+);
 export function AppRoutes() {
   return (
     <Suspense>
@@ -26,7 +29,11 @@ export function AppRoutes() {
           path="/recetas/:id"
           element={<RecipesDetails></RecipesDetails>}
         ></Route>
-        <Route path="/login" element={<RegisterForm></RegisterForm>}></Route>
+        <Route
+          path="/registrate"
+          element={<RegisterForm></RegisterForm>}
+        ></Route>
+        <Route path="/login" element={<LoginForm></LoginForm>}></Route>
         <Route
           path="/tus-recetas"
           element={<UserRecipes></UserRecipes>}
