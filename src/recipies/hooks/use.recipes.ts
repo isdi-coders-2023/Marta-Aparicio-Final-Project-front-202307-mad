@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AppDispatch, RootState } from '../../store/store';
 
-import { url } from '../../config.ts';
+import { url } from '../../../config.ts';
 import { Recipe, RecipeNoId } from '../../model/recipes';
 import { actions } from '../redux/recipes.slice';
 import {

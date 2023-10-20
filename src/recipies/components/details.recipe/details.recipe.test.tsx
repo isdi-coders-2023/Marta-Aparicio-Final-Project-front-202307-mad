@@ -12,7 +12,7 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
 }));
-jest.mock('../../../config.ts', () => ({
+jest.mock('../../../../config.ts', () => ({
   url: '',
 }));
 describe('Given the component court-reviews', () => {

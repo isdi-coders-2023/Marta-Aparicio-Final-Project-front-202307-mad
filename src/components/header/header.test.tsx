@@ -7,7 +7,7 @@ import { useUsers } from '../../users/hooks/use.users';
 import { Header } from './header';
 
 jest.mock('../../users/hooks/use.users');
-jest.mock('../../config.ts', () => ({
+jest.mock('../../../config.ts', () => ({
   url: '',
 }));
 describe('Given the componente Header', () => {

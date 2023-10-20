@@ -11,7 +11,7 @@ jest.mock('react-redux', () => ({
   ...jest.requireActual('react-redux'),
   useDispatch: jest.fn().mockReturnValue(jest.fn()),
 }));
-jest.mock('../../config.ts', () => ({
+jest.mock('../../../config.ts', () => ({
   url: '',
 }));
 jest.spyOn(Math, 'ceil').mockReturnValue(3);

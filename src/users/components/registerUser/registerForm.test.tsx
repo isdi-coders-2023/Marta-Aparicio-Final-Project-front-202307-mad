@@ -7,7 +7,7 @@ import { User } from '../../../model/user';
 import { appStore } from '../../../store/store';
 import RegisterForm from './registerForm';
 
-jest.mock('../../../config.ts', () => ({
+jest.mock('../../../../config.ts', () => ({
   url: '',
 }));
 describe('Given the component Form', () => {

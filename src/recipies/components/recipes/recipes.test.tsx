@@ -8,7 +8,7 @@ import { useRecipes } from '../../hooks/use.recipes';
 import Recipes from './recipes';
 
 jest.mock('../../hooks/use.recipes');
-jest.mock('../../../config.ts', () => ({
+jest.mock('../../../../config.ts', () => ({
   url: '',
 }));
 describe('Given the component Recipes', () => {

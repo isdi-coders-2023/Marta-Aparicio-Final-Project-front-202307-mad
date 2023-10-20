@@ -3,7 +3,7 @@ import { act, render, screen } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { AppRoutes } from './app.routes';
 
-jest.mock('../config.ts', () => ({
+jest.mock('../../config.ts', () => ({
   url: '',
 }));
 describe('When it is instantiated with a route /', () => {

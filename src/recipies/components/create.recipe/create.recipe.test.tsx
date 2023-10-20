@@ -16,7 +16,7 @@ jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
   useParams: jest.fn(),
 }));
-jest.mock('../../../config.ts', () => ({
+jest.mock('../../../../config.ts', () => ({
   url: '',
 }));
 

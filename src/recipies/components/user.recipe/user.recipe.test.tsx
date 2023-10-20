@@ -9,7 +9,7 @@ import { useUsers } from '../../../users/hooks/use.users';
 import { UserRecipeCard } from './user.recipe';
 
 jest.mock('../../../users/hooks/use.users');
-jest.mock('../../../config.ts', () => ({
+jest.mock('../../../../config.ts', () => ({
   url: '',
 }));
 

@@ -4,7 +4,7 @@ import { LoginData, UserNoId } from '../../model/user';
 import { AppDispatch, RootState } from '../../store/store';
 import { ApiUsersRepository } from '../services/users.repository';
 
-import { url } from '../../config.ts';
+import { url } from '../../../config.ts';
 import { actions } from '../redux/users.slice';
 import { loginThunk, registerThunk } from '../redux/users.thunk';
 
