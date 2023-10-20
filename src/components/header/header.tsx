@@ -46,7 +46,7 @@ export function Header() {
               </>
             ) : (
               <li className={style.login}>
-                <Link to={'/registrate'}>Login</Link>
+                <Link to={'/login'}>Login</Link>
                 <FaUser />
               </li>
             )}

@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginData } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
 import styles from '../loginUser/loginForm.module.scss';
@@ -23,7 +23,7 @@ export default function LoginForm() {
   return (
     <main className={styles.main}>
       <form aria-label="login" onSubmit={handleSubmit}>
-        <legend>SI YA ESTÁS REGISTRADO</legend>
+        <legend>LOGIN</legend>
         <input type="text" name="userName" placeholder="Nombre" required />
         <input
           type="password"
@@ -33,6 +33,7 @@ export default function LoginForm() {
         />
         <button type="submit">Login</button>
       </form>
+      <Link to={'/registrate'}>SI AÚN NO ESTÁS REGISTRADO, PULSA AQUÍ</Link>
     </main>
   );
 }

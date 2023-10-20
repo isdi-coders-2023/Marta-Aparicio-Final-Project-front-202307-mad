@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { UserNoId } from '../../../model/user';
 import { useUsers } from '../../hooks/use.users';
 import styles from '../registerUser/registerForm.module.scss';
@@ -37,9 +37,6 @@ export default function RegisterForm() {
           Enviar
         </button>
       </form>
-      <Link to={'/login'}>
-        Si ya estás registrado, pulsa aquí para ir a login
-      </Link>
     </main>
   );
 }
