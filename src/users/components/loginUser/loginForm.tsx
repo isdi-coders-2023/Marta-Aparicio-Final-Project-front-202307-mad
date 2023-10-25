@@ -18,7 +18,7 @@ export default function LoginForm() {
         .value,
     };
     login(data);
-    navigate('/añadir-receta');
+    navigate('/recetas');
   };
   return (
     <main className={styles.main}>

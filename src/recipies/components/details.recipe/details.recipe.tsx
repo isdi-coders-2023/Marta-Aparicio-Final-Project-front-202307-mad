@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Recipe } from '../../../model/recipes';
+import { useUsers } from '../../../users/hooks/use.users';
 import { useRecipes } from '../../hooks/use.recipes';
 import styles from '../details.recipe/details.module.scss';
 export default function RecipeDetails() {
   const { recipes, loadRecipes } = useRecipes();
+  const { token } = useUsers();
 
   const { id } = useParams();
 
@@ -16,7 +18,13 @@ export default function RecipeDetails() {
 
   return (
     <>
-      {recipe && (
+      {!token && (
+        <main className={styles.noToken}>
+          <p>Para acceder debe registrarse</p>
+          <Link to="/registrate">Regístrate</Link>
+        </main>
+      )}
+      {token && (
         <main className={styles.main}>
           <div>
             <h2>{recipe.name}</h2>
