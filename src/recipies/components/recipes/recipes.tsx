@@ -14,6 +14,7 @@ export default function Recipes() {
     paginatedData,
     currentPage,
     pageCount,
+    loadState,
   } = useRecipes();
 
   useEffect(() => {
@@ -44,11 +45,14 @@ export default function Recipes() {
           <option value="Otros">Otros</option>
         </select>
       </nav>
-      <ul>
-        {paginatedData.map((item: Recipe) => (
-          <RecipeCard key={item.id} recipe={item}></RecipeCard>
-        ))}
-      </ul>
+      {loadState === 'loading' && <div className={styles.spinner}></div>}
+      {loadState === 'loaded' && (
+        <ul>
+          {paginatedData.map((item: Recipe) => (
+            <RecipeCard key={item.id} recipe={item}></RecipeCard>
+          ))}
+        </ul>
+      )}
       {recipes.length > 4 && (
         <>
           <div className="previousNextButtons">

@@ -12,24 +12,20 @@ jest.mock('../../../../config.ts', () => ({
   url: '',
 }));
 describe('Given the component Recipes', () => {
+  const recipes = [
+    { id: 1, img: { url: '' } },
+    { id: 2, img: { url: '' } },
+    { id: 3, img: { url: '' } },
+    { id: 4, img: { url: '' } },
+    { id: 5, img: { url: '' } },
+  ];
   describe('When we render it', () => {
     (useRecipes as jest.Mock).mockReturnValue({
-      recipes: [
-        { id: 1, img: { url: '' } },
-        { id: 2, img: { url: '' } },
-        { id: 3, img: { url: '' } },
-        { id: 4, img: { url: '' } },
-        { id: 5, img: { url: '' } },
-      ],
+      recipes: recipes,
       loadRecipes: jest.fn(),
-      paginatedData: [
-        { id: 1, img: { url: '' } },
-        { id: 2, img: { url: '' } },
-        { id: 3, img: { url: '' } },
-        { id: 4, img: { url: '' } },
-        { id: 5, img: { url: '' } },
-      ],
+      paginatedData: recipes,
       category: jest.fn(),
+      loadState: 'loaded',
     });
 
     beforeEach(() => {
