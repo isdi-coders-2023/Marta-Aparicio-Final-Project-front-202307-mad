@@ -25,10 +25,9 @@ describe('Given the component Recipes', () => {
       loadRecipes: jest.fn(),
       paginatedData: recipes,
       category: jest.fn(),
-      loadState: 'loaded',
     });
 
-    beforeEach(() => {
+    const renderedElement = () => {
       render(
         <Provider store={appStore}>
           <Router>
@@ -36,21 +35,46 @@ describe('Given the component Recipes', () => {
           </Router>
         </Provider>
       );
-    });
+    };
+
     test('the component should be in the document', () => {
+      renderedElement();
       const element = screen.getByRole('navigation');
       expect(element).toBeInTheDocument();
     });
     test('Then a list should be in the document', () => {
+      (useRecipes as jest.Mock).mockReturnValue({
+        loadState: 'loaded',
+        recipes: recipes,
+        loadRecipes: jest.fn(),
+        paginatedData: recipes,
+        category: jest.fn(),
+      });
+      renderedElement();
       const element = screen.getByRole('list');
       expect(element).toBeInTheDocument();
     });
+    test('Then a spinner should be in the document', () => {
+      (useRecipes as jest.Mock).mockReturnValue({
+        loadState: 'loading',
+        recipes: recipes,
+        loadRecipes: jest.fn(),
+        paginatedData: recipes,
+        category: jest.fn(),
+      });
+      renderedElement();
+      const element = screen.getByText('', { selector: '.spinner' });
+      expect(element).toBeInTheDocument();
+    });
+
     test('Then expect handleCategories to have been called with category', async () => {
+      renderedElement();
       const selectElement = screen.queryAllByText('option');
       await userEvent.click(selectElement[1]);
       expect(selectElement).toEqual([]);
     });
     test('Then expect handleCategories to have been called with category', async () => {
+      renderedElement();
       const selectElement = screen.getByTestId('select');
       await fireEvent.change(selectElement, { target: { value: 'Legumbres' } });
       let options = screen.getAllByRole('option');
