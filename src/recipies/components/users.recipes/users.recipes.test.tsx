@@ -21,12 +21,22 @@ describe('Given the component Recipes', () => {
     { id: '6', author: { id: '1' }, img: { url: '' } },
     { id: '7', author: { id: '1' }, img: { url: '' } },
   ];
+  jest.spyOn(Storage.prototype, 'getItem');
+  Storage.prototype.getItem = jest.fn().mockReturnValue('1');
+  jest.spyOn(Array.prototype, 'filter');
   describe('When we render it', () => {
-    jest.spyOn(Storage.prototype, 'getItem');
-    Storage.prototype.getItem = jest.fn().mockReturnValue('1');
-    jest.spyOn(Array.prototype, 'filter');
-    beforeEach(async () => {
-      await (useRecipes as jest.Mock).mockReturnValue({
+    const elementRendered = () => {
+      render(
+        <Provider store={appStore}>
+          <Router>
+            <UserRecipes></UserRecipes>
+          </Router>
+        </Provider>
+      );
+    };
+
+    test('Then a list should be in the document', async () => {
+      (useRecipes as jest.Mock).mockReturnValue({
         recipes: recipes,
         loadRecipes: jest.fn(),
         currentPage: 1,
@@ -34,7 +44,13 @@ describe('Given the component Recipes', () => {
         paginatedDataUser: recipes,
         loadState: 'loaded',
       });
-
+      elementRendered();
+      const element = screen.getByRole('list');
+      await expect(element).toBeInTheDocument();
+    });
+  });
+  describe('When we render it', () => {
+    const elementRendered = () => {
       render(
         <Provider store={appStore}>
           <Router>
@@ -42,19 +58,9 @@ describe('Given the component Recipes', () => {
           </Router>
         </Provider>
       );
-    });
-
-    test('Then a list should be in the document', async () => {
-      const element = screen.getByRole('list');
-      await expect(element).toBeInTheDocument();
-    });
-  });
-  describe('When we render it', () => {
-    jest.spyOn(Storage.prototype, 'getItem');
-    Storage.prototype.getItem = jest.fn().mockReturnValue('1');
-    jest.spyOn(Array.prototype, 'filter');
-    beforeEach(async () => {
-      await (useRecipes as jest.Mock).mockReturnValue({
+    };
+    test('Then a spinner should be in the document', async () => {
+      (useRecipes as jest.Mock).mockReturnValue({
         recipes: recipes,
         loadRecipes: jest.fn(),
         currentPage: 1,
@@ -62,15 +68,7 @@ describe('Given the component Recipes', () => {
         paginatedDataUser: recipes,
         loadState: 'loading',
       });
-      render(
-        <Provider store={appStore}>
-          <Router>
-            <UserRecipes></UserRecipes>
-          </Router>
-        </Provider>
-      );
-    });
-    test('Then a spinner should be in the document', async () => {
+      elementRendered();
       const element = screen.getByText('', { selector: '.spinner' });
       expect(element).toBeInTheDocument();
     });
