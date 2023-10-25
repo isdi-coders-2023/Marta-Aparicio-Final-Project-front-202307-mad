@@ -37,6 +37,7 @@ describe('Given the component Recipes', () => {
           { id: '4', author: { id: '1' }, img: { url: '' } },
           { id: '5', author: { id: '1' }, img: { url: '' } },
         ],
+        loadState: 'loaded',
       });
 
       render(

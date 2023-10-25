@@ -13,6 +13,7 @@ export default function UserRecipes() {
     handleNextPage,
     pageSize,
     deleteRecipes,
+    loadState,
   } = useRecipes();
 
   useEffect(() => {
@@ -33,15 +34,19 @@ export default function UserRecipes() {
   return (
     <main className={styles.main}>
       <h3>TUS RECETAS</h3>
-      <ul>
-        {paginatedDataUser.map((item: Recipe) => (
-          <UserRecipeCard
-            key={item.id}
-            recipe={item}
-            onDelete={deleteRecipes}
-          ></UserRecipeCard>
-        ))}
-      </ul>
+      {loadState === 'loading' && <div className={styles.spinner}></div>}
+      {loadState === 'loaded' && (
+        <ul>
+          {paginatedDataUser.map((item: Recipe) => (
+            <UserRecipeCard
+              key={item.id}
+              recipe={item}
+              onDelete={deleteRecipes}
+            ></UserRecipeCard>
+          ))}
+        </ul>
+      )}
+
       {userRecipes.length > 4 && (
         <>
           <div>
