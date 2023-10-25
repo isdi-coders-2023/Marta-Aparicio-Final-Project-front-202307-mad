@@ -4,10 +4,12 @@ import { Provider } from 'react-redux';
 import { MemoryRouter, useParams } from 'react-router-dom';
 import { Recipe } from '../../../model/recipes';
 import { appStore } from '../../../store/store';
+import { useUsers } from '../../../users/hooks/use.users';
 import { useRecipes } from '../../hooks/use.recipes';
 import Details from './details.recipe';
 
 jest.mock('../../hooks/use.recipes');
+jest.mock('../../../users/hooks/use.users');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
@@ -28,7 +30,7 @@ describe('Given the component court-reviews', () => {
       recipes: mockRecipe,
       loadRecipes: jest.fn(),
     });
-    beforeEach(() => {
+    const details = () => {
       (useParams as jest.Mock).mockReturnValue({ id: '1' });
       render(
         <MemoryRouter>
@@ -37,14 +39,22 @@ describe('Given the component court-reviews', () => {
           </Provider>
         </MemoryRouter>
       );
-    });
+    };
 
     test('Then, the image alt text should be Receta', () => {
+      (useUsers as jest.Mock).mockReturnValue({ token: 'test' });
+      details();
       const receta = screen.getByAltText('Receta');
       expect(receta).toBeInTheDocument();
     });
     test('Then, loadRecipes should have been called', () => {
       expect(useRecipes().loadRecipes).toHaveBeenCalled();
+    });
+    test('Then, the text of the link should be in the Document', () => {
+      (useUsers as jest.Mock).mockReturnValue({ token: null });
+      details();
+      const link = screen.getByText('Regístrate');
+      expect(link).toBeInTheDocument();
     });
   });
 });
